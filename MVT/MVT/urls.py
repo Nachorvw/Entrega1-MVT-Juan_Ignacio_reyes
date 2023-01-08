@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from Consultorio.views import patient_creation, patient_list, order_creation, order_list
+from MVT.views import index
 urlpatterns = [
+    path("", index, name="index"),
     path('admin/', admin.site.urls),
+    path("create/", patient_creation),
+    path("list/", patient_list),
+    path("ocreate/", order_creation),
+    path("olist/", order_list),
 ]

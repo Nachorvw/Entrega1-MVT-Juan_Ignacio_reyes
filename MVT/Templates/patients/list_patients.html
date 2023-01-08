@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}  
+Listado de Pacientes
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-dark table-hover" cellspacing="5" cellpadding="5" border="3">
+    <!--<h1>Listado de familiares</h1>-->
+
+<tr class="table-active">
+    <td><strong>Nombre</strong></td>
+    <td><strong>Apellido</strong></td>
+    <td><strong>Edad</strong></td>
+    <td><strong>DNI</strong></td>
+    <td><strong>Fecha nacimiento</strong></td>
+    <td><strong>Nro afiliado</strong></td>
+</tr>
+{% for patient in patients %}
+
+<tr>
+    
+    <td><a href="patient/">{{patient.name}}</a></td>
+
+    <td>{{patient.surname}}</td>
+
+    <td>{{patient.age}}</td>
+
+    <td>{{patient.dni}}</td>
+
+    <td>{{patient.birth_date}}</td>
+
+    <td>{{patient.affiliate_code}}</td>
+
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}  
+creacion de Pacientes
+{% endblock %}
+
+{% block navbar %} <a class="nav-item nav-link active" href="/create/">Crear Paciente</a> {% endblock %}
+
+{% block content %}
+{%  if form  %}
+<h1>hola desde la creacion</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+
+    <p>Nombre: <input type="text" name="name"></p>
+    <p>Apellido: <input type="text" name="surname"></p>
+    <p>Edad: <input type="number" name="age"></p>
+    <p>DNI: {{form.dni}}</p>
+    <p>Fecha de nacimiento: <input  name="birth_date" placeholder="DD/MM/YYY" type="date"/></p>
+    <p>Numero de afiliado: <input type="number" name="affiliate_code"></p>
+
+    <input type="submit" value="Crear Paciente">
+</form>
+{% else %}
+    <h1>hola desde el post </h1>
+    <h1>se creo el paciente exitosamente</h1>
+{% endif %}
+
+{% if form_errors %}
+    {{form_errors}}    <!-- terminar los errores  -->
+{% endif %}
+{% endblock %}
+
+<!-- HACER LOS ERRORES Y TERMINAR EL HTML -->

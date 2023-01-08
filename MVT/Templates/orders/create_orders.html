@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}  
+creacion de Ordenes
+{% endblock %}
+
+{% block content %}
+
+{% if form %}
+<h1>hola desde la creacion de ordenes</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+
+    <p>Tipo de orden: {{form.order_type}}</p>
+    <p>Fecha de indicacion: <input  name="indication_date" placeholder="DD/MM/YYY" type="date"/></p>
+    <p>esta completado? {{form.done}}</p>
+    <p>descripcion de la orden: {{form.description}}</p>
+
+
+    <input type="submit" value="Crear Orden">
+</form>
+{% else %}
+<h1>se creo la orden exitosamente</h1>
+{% endif %}
+{% if form_errors %}
+    {{form_errors}}    <!-- terminar los errores  -->
+{% endif %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}  
+Listado de Ordenes
+{% endblock %}
+
+{% block content %}
+    {% for order in order_list %}
+    
+        <p> tipo de orden: {{order.order_type}}</p>
+        <p>fecha de indicacion: {{order.indication_date}}</p>
+        {% if order.done %}
+            <p>la orden fue completada</p>
+        {% else %}
+            <p>la orden no fue completada</p>
+        {% endif %}
+        <p>descripcion: {{order.description}}</p>
+    
+    {% endfor %}
+{% endblock %}
