@@ -36,7 +36,15 @@ def patient_creation(request):
 
 def patient_list(request):
     #? funcion para listar la data de los pacientes en el html
-    list_patient = Patient.objects.all
+
+    #? si el get nos trae un search (la barra de busqueda), filtramos los datos para mostrar los que contengan ese nombre
+    if "search" in request.GET:
+        search = request.GET["search"]
+        list_patient = Patient.objects.filter(name__icontains = search)
+
+    #? si no trae un search, mandamos toda la data normalmente
+    else: 
+        list_patient = Patient.objects.all()
     context = {
         "patients" : list_patient,
     }
@@ -70,7 +78,11 @@ def order_creation(request):
             return render(request, "orders/create_orders.html", context=context)
 
 def order_list(request):
-    list_orders = Orders.objects.all
+    if "search" in request.GET:
+        search = request.GET["search"]
+        list_orders = Orders.objects.filter(order_type__icontains = search)
+    else:
+        list_orders = Orders.objects.all()
     context = {
         "order_list" : list_orders,
     }
@@ -104,7 +116,11 @@ def medicine_creation(request):
             return render(request, "medicines/create_medicines.html", context=context)
 
 def medicine_list(request):
-    list_medicines = Medicines.objects.all
+    if "search" in request.GET:
+        search = request.GET["search"]
+        list_medicines = Medicines.objects.filter(name__icontains = search)
+    else:
+        list_medicines = Medicines.objects.all()
     context = {
         "medicine_list" : list_medicines,
     }
