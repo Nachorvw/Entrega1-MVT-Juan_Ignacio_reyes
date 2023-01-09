@@ -20,9 +20,9 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav text-center">
+                <div class="navbar-nav text-center ">
                     <a class="nav-item nav-link" href="/">Inicio</a>
-                    {% block navbar %}<a class="nav-item nav-link" href="/create/">Crear Paciente</a>{% endblock %}
+                    <a class="nav-item nav-link" href="/create/">Crear Paciente</a>
                     <a class="nav-item nav-link" href="/list/">Listar Pacientes</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,7 +31,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/ocreate/">Crear Orden</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/">Crear Medicacion</a>
+                            <a class="dropdown-item" href="/mcreate/">Crear Medicacion</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -41,9 +41,11 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/olist/">Listar Ordenes</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/products/create-product/">Listar Medicamentos</a>
+                            <a class="dropdown-item" href="/mlist/">Listar Medicamentos</a>
                         </div>
                     </li>
+                    {% block navbar %}
+                    {% endblock %}
                 </div>
             </div>
         </nav>

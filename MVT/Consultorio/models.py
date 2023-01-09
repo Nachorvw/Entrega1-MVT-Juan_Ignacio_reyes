@@ -10,11 +10,17 @@ class Patient(models.Model):
     birth_date = models.DateField(blank=False)
     affiliate_code = models.IntegerField(blank=False)
 
+    def __str__(self):
+        return self.name
+
 class Orders(models.Model):
     order_type = models.CharField(max_length=50,blank=False)
     indication_date = models.DateField(blank=False)
     done = models.BooleanField(default=False)
     description = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.order_type
 
 class Medicines(models.Model):
     name = models.CharField(max_length=50,blank=False)
@@ -22,5 +28,8 @@ class Medicines(models.Model):
     indication_date = models.DateField(blank=False)
     diagnostic = models.CharField(max_length=100, blank=False)
     number = models.IntegerField(blank=False)
+    
+    def __str__(self):
+        return self.name
 
 

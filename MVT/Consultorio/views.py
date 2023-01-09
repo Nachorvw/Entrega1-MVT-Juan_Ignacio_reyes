@@ -25,7 +25,7 @@ def patient_creation(request):
                 birth_date = form.cleaned_data["birth_date"],
                 affiliate_code = form.cleaned_data["affiliate_code"],
             )
-            return render(request, "create_patient.html", context={})
+            return render(request, "patients/create_patient.html", context={})
         
         else: #? si los datos no son validos, se muestran los errores y devuelve el form para completarlo correctamente
             context = {
@@ -75,9 +75,37 @@ def order_list(request):
         "order_list" : list_orders,
     }
     return render(request, "orders/list_orders.html", context=context)
-    
+
 def medicine_creation(request):
-    pass
+    if request.method == "GET":
+        context = {
+            "form" : MedicinesForm(),
+        }
+        return render(request, "medicines/create_medicines.html", context=context)
+    
+    elif request.method == "POST":
+        form = MedicinesForm(request.POST)
+
+        if form.is_valid():
+            Medicines.objects.create(
+                name = form.cleaned_data["name"],
+                dose = form.cleaned_data["dose"],
+                indication_date = form.cleaned_data["indication_date"],
+                diagnostic = form.cleaned_data["diagnostic"],
+                number = form.cleaned_data["number"],
+            )
+            return render(request, "medicines/create_medicines.html")
+
+        else:
+            context = {
+                "form_errors" : form.errors,
+                "form" : MedicinesForm(),
+            }
+            return render(request, "medicines/create_medicines.html", context=context)
 
 def medicine_list(request):
-    pass
+    list_medicines = Medicines.objects.all
+    context = {
+        "medicine_list" : list_medicines,
+    }
+    return render(request, "medicines/list_medicines.html", context=context)

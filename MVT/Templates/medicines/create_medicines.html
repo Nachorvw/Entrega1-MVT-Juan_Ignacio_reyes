@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}  
+creacion de Recetas
+{% endblock %}
+
+{% block content %}
+
+{% if form %}
+<h1>hola desde la creacion de Recetas</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+
+    <p>Nombre del Remedio: {{form.name}}</p>
+    <p>Dosis indicada: {{form.dose}}mg</p>
+    <p>Fecha de indicacion: <input  name="indication_date" placeholder="DD/MM/YYY" type="date"/></p>
+    <p>Diagnostico del Paciente: {{form.diagnostic}}</p>
+    <p>Codigo de la receta: {{form.number}}</p>
+
+
+    <input type="submit" value="Crear Receta">
+</form>
+{% else %}
+<h1>se creo la receta exitosamente</h1>
+{% endif %}
+{% if form_errors %}
+    {{form_errors}}    <!-- terminar los errores  -->
+{% endif %}
+{% endblock %}

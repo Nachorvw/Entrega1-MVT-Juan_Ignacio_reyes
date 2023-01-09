@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}  
+Listado de Ordenes
+{% endblock %}
+
+{% block content %}
+    {% for medicine in medicine_list %}
+    
+        <p>Nombre del Remedio: {{medicine.name}}</p>
+        <p>Dosis indicada: {{medicine.dose}}mg</p>
+        <p>fecha de indicacion: {{medicine.indication_date}}</p>
+        <p>Diagnostico del Paciente: {{medicine.diagnostic}}</p>
+        <p>Codigo de la receta: {{medicine.number}}</p>
+    
+    {% endfor %}
+{% endblock %}
