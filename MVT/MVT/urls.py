@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate
+from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate, MedicineDelete, PatientDelete, OrderDelete
 from MVT.views import index
 urlpatterns = [
     path("", index, name="index"),
@@ -23,10 +23,13 @@ urlpatterns = [
     path("create-patient/", patient_creation),
     path("list-patients/", patient_list),
     path("update-patient/<int:pk>/", PatientUpdate.as_view()),
+    path("delete-patient/<int:pk>/", PatientDelete.as_view()),
     path("create-order/", order_creation),
     path("list-orders/", order_list),
     path("update-order/<int:pk>/", OrderUpdate.as_view()),
+    path("delete-order/<int:pk>/", OrderDelete.as_view()),
     path("create-medicine/", medicine_creation),
     path("list-medicines/", medicine_list),
     path("update-medicine/<int:pk>/", MedicineUptade.as_view()),
+    path("delete-medicine/<int:pk>/", MedicineDelete.as_view()),
 ]

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    confirmacion de borrado
+{% endblock %}
+
+{% block content %}
+
+<div class="text-light">
+    <h2>Medicina a Borrar {{object.name}}</h2>
+    <h1 class="text-danger">{{object.name}}</h1>
+    <h2 class="text-danger">numero de receta: {{object.number}}</h2>
+    <p>Seguro que desea eliminarlo?</p>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Borrar">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, DeleteView
 from Consultorio.models import Patient, Orders, Medicines
 from Consultorio.forms import PatientsForm, OrdersForm, MedicinesForm
 # Create your views here.
@@ -53,10 +53,17 @@ def patient_list(request):
     return render(request, "patients/list_patients.html", context=context)
 
 class PatientUpdate(UpdateView):
+    #? funcion para actualizar los datos de un objeto en la base de datos (paciente)
     model = Patient
     fields = ["name", "surname", "age", "dni", "birth_date", "affiliate_code"]
     template_name= "patients/update_patient.html"
     success_url ="/list-patients/"
+
+class PatientDelete(DeleteView):
+    #? funcion para borrar un objeto de la base de datos (paciente)
+    model = Patient
+    template_name = 'patients/delete_patient.html'
+    success_url = '/list-patients/'
 
 def order_creation(request):
     if request.method == "GET":
@@ -102,6 +109,11 @@ class OrderUpdate(UpdateView):
     template_name= "orders/update_order.html"
     success_url ="/list-orders/"
 
+class OrderDelete(DeleteView):
+    model = Orders
+    template_name = 'Orders/delete_Order.html'
+    success_url = '/list-Orders/'
+
 def medicine_creation(request):
     if request.method == "GET":
         context = {
@@ -143,7 +155,13 @@ def medicine_list(request):
     return render(request, "medicines/list_medicines.html", context=context)
 
 class MedicineUptade(UpdateView):
+
     model = Medicines
     fields = ["name", "dose", "indication_date", "diagnostic", "number"]
     template_name= "medicines/update_medicine.html"
     success_url ="/list-medicines/"
+
+class MedicineDelete(DeleteView):
+    model = Medicines
+    template_name = 'medicines/delete_medicine.html'
+    success_url = '/list-medicines/'

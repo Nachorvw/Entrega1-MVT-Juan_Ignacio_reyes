@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
+
 {% block title %}  
 creacion de Pacientes
-{% endblock %}
-
-{% block navbar %}
-
 {% endblock %}
 
 {% block content %}
@@ -26,8 +23,8 @@ creacion de Pacientes
 
 
 {% else %}
-    <h1>hola desde el post </h1>
-    <h1>se creo el paciente exitosamente</h1>
+    
+    <h1 class="text-success">se creo el paciente exitosamente</h1>
 {% endif %}
 
 {% if form_errors %}
