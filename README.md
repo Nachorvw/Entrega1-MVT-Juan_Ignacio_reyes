@@ -3,8 +3,7 @@
 ### Hi there 👋 
 
 <!--
-Esto no se ve pero fijate que tenes iconos y demas cosas para modificar a tu gusto, tomalo como plantilla
-**ematevez/ematevez** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Esto no se ve pero fijate que tenes iconos y demas cosas para modificar a tu gusto, tomalo como plantilla is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
 
