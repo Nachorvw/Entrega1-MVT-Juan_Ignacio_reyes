@@ -112,7 +112,7 @@ class OrderUpdate(UpdateView):
 class OrderDelete(DeleteView):
     model = Orders
     template_name = 'Orders/delete_Order.html'
-    success_url = '/list-Orders/'
+    success_url = '/list-orders/'
 
 def medicine_creation(request):
     if request.method == "GET":

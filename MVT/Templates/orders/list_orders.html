@@ -15,9 +15,9 @@ Listado de Ordenes
 
     {% for order in order_list %}
 {% if order.done %}
-<div class="card mb-3 mt-3 flex border-danger" style="max-width: 540px;">
-{% else %}
 <div class="card mb-3 mt-3 flex border-success" style="max-width: 540px;">
+{% else %}
+<div class="card mb-3 mt-3 flex border-danger" style="max-width: 540px;">
 {% endif %}
         <div class="row g-0">
             <div class="col-md-4">
