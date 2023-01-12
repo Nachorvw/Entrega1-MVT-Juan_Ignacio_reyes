@@ -22,7 +22,7 @@ Here are some ideas to get you started:
 
 
 <!--Aca es la imagen el href-> es el link donde quieren que valla y el src -> donde esta la imagen que van a poner //width = es el tamaño-->
-<p align="center"><a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://i0.wp.com/edtechreviews.net/wp-content/uploads/2021/12/coderhouse_logo.png?resize=750%2C750&ssl=1" alt="logo del proyecto"></a></p>
+<p align="center"><a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LlQCrw7Yh54_ZSyfxi5tbiYgh6i9SNdgrQ&usqp=CAU" alt="logo del proyecto"></a></p>
 
 
 ##Descripción del proyecto
