@@ -15,15 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list
+from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate
 from MVT.views import index
 urlpatterns = [
     path("", index, name="index"),
     path('admin/', admin.site.urls),
-    path("create/", patient_creation),
-    path("list/", patient_list),
-    path("ocreate/", order_creation),
-    path("olist/", order_list),
-    path("mcreate/", medicine_creation),
-    path("mlist/", medicine_list),
+    path("create-patient/", patient_creation),
+    path("list-patients/", patient_list),
+    path("update-patient/<int:pk>/", PatientUpdate.as_view()),
+    path("create-order/", order_creation),
+    path("list-orders/", order_list),
+    path("update-order/<int:pk>/", OrderUpdate.as_view()),
+    path("create-medicine/", medicine_creation),
+    path("list-medicines/", medicine_list),
+    path("update-medicine/<int:pk>/", MedicineUptade.as_view()),
 ]

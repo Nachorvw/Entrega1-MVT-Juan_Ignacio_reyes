@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Actualizacion de Recetas
+{% endblock %}
+
+{% block content %}
+    <h1>Actualizacion de Recetas</h1>
+
+
+
+    {% if form %}
+
+        <form class="text-light" method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <input type="submit" value="Actualizar">
+        </form>
+
+    {% endif %}
+
+
+    {% if form_errors %}
+
+    <h1>Se encontro un error!</h1>
+    <h2 style="color: red;" >Errores:</h2>
+    {{form_errors}}
+
+    {% endif %}
+
+
+{% endblock %}

@@ -6,9 +6,9 @@ creacion de Ordenes
 {% block content %}
 
 {% if form %}
-<h1>hola desde la creacion de ordenes</h1>
+<h1>creacion de ordenes</h1>
 
-<form action="" method="POST">
+<form class="text-light" method="POST">
     {% csrf_token %}
 
 
@@ -23,7 +23,11 @@ creacion de Ordenes
 {% else %}
 <h1>se creo la orden exitosamente</h1>
 {% endif %}
+
 {% if form_errors %}
-    {{form_errors}}    <!-- terminar los errores  -->
+<h1>Se encontro un error!</h1>
+<h2 style="color: red;" >Errores:</h2>
+{{form_errors}}
 {% endif %}
+
 {% endblock %}

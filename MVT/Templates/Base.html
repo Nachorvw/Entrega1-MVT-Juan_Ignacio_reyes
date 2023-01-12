@@ -8,30 +8,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/MVT/styles/style.css">
     <title>{% block title %}  {% endblock %}</title>
 </head>
 <header>
-
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <img src="https://i0.wp.com/edtechreviews.net/wp-content/uploads/2021/12/coderhouse_logo.png?resize=750%2C750&ssl=1" width="30" height="30" class="d-inline-block align-top" alt="Logo Coder">
-            <a class="navbar-brand" href="/">Consultorio</a>
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex">
+            <a class="navbar-brand" href="/">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LlQCrw7Yh54_ZSyfxi5tbiYgh6i9SNdgrQ&usqp=CAU" width="30" height="30" class="d-inline-block align-top" alt="Logo Coder">
+                Consultorio
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav text-center ">
+                <div class="navbar-nav text-center">
                     <a class="nav-item nav-link" href="/">Inicio</a>
-                    <a class="nav-item nav-link" href="/create/">Crear Paciente</a>
-                    <a class="nav-item nav-link" href="/list/">Listar Pacientes</a>
+                    <a class="nav-item nav-link" href="/create-patient/">Crear Paciente</a>
+                    <a class="nav-item nav-link" href="/list-patients/">Listar Pacientes</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Creacion
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/ocreate/">Crear Orden</a>
+                            <a class="dropdown-item" href="/create-order/">Crear Orden</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/mcreate/">Crear Medicacion</a>
+                            <a class="dropdown-item" href="/create-medicine/">Crear Medicacion</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -39,9 +40,9 @@
                             Listado
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/olist/">Listar Ordenes</a>
+                            <a class="dropdown-item" href="/list-orders/">Listar Ordenes</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/mlist/">Listar Medicamentos</a>
+                            <a class="dropdown-item" href="/list-medicines/">Listar Medicamentos</a>
                         </div>
                     </li>
                     {% block navbar %}
@@ -51,13 +52,12 @@
         </nav>
 
 </header>
-<body>
+<body class="bg-secondary">
 
 
     {% block content %}
 
     {% endblock %}
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -68,4 +68,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </body>
+<footer>
+
+</footer>
 </html>

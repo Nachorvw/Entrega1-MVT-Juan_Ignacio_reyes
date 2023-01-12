@@ -13,6 +13,10 @@ class Patient(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Paciente'
+        verbose_name_plural = 'Pacientes'
+
 class Orders(models.Model):
     order_type = models.CharField(max_length=50,blank=False)
     indication_date = models.DateField(blank=False)
@@ -21,6 +25,10 @@ class Orders(models.Model):
 
     def __str__(self):
         return self.order_type
+
+    class Meta:
+        verbose_name = 'Orden'
+        verbose_name_plural = 'Ordenes'
 
 class Medicines(models.Model):
     name = models.CharField(max_length=50,blank=False)
@@ -32,4 +40,7 @@ class Medicines(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Receta'
+        verbose_name_plural = 'Recetas'
 

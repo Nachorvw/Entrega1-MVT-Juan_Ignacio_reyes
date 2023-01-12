@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.generic import UpdateView
 from Consultorio.models import Patient, Orders, Medicines
 from Consultorio.forms import PatientsForm, OrdersForm, MedicinesForm
 # Create your views here.
@@ -35,6 +36,7 @@ def patient_creation(request):
             return render(request, "patients/create_patient.html", context=context)
 
 def patient_list(request):
+
     #? funcion para listar la data de los pacientes en el html
 
     #? si el get nos trae un search (la barra de busqueda), filtramos los datos para mostrar los que contengan ese nombre
@@ -49,6 +51,12 @@ def patient_list(request):
         "patients" : list_patient,
     }
     return render(request, "patients/list_patients.html", context=context)
+
+class PatientUpdate(UpdateView):
+    model = Patient
+    fields = ["name", "surname", "age", "dni", "birth_date", "affiliate_code"]
+    template_name= "patients/update_patient.html"
+    success_url ="/list-patients/"
 
 def order_creation(request):
     if request.method == "GET":
@@ -88,6 +96,12 @@ def order_list(request):
     }
     return render(request, "orders/list_orders.html", context=context)
 
+class OrderUpdate(UpdateView):
+    model = Orders
+    fields = ["order_type", "indication_date", "done", "description"]
+    template_name= "orders/update_order.html"
+    success_url ="/list-orders/"
+
 def medicine_creation(request):
     if request.method == "GET":
         context = {
@@ -116,6 +130,8 @@ def medicine_creation(request):
             return render(request, "medicines/create_medicines.html", context=context)
 
 def medicine_list(request):
+
+
     if "search" in request.GET:
         search = request.GET["search"]
         list_medicines = Medicines.objects.filter(name__icontains = search)
@@ -125,3 +141,9 @@ def medicine_list(request):
         "medicine_list" : list_medicines,
     }
     return render(request, "medicines/list_medicines.html", context=context)
+
+class MedicineUptade(UpdateView):
+    model = Medicines
+    fields = ["name", "dose", "indication_date", "diagnostic", "number"]
+    template_name= "medicines/update_medicine.html"
+    success_url ="/list-medicines/"
