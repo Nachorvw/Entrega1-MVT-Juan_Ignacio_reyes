@@ -52,6 +52,16 @@ def patient_list(request):
     }
     return render(request, "patients/list_patients.html", context=context)
 
+def patientdetail(request,pk):
+    #? funcion para ver con detalle el paciente
+    patient_all = Patient.objects.get(id = pk)
+    patient_orders = Patient.objects.get(id = pk).orders_set.all()
+    context = {
+        "patient" : patient_all,
+        "orders" : patient_orders,
+    }
+    return render(request, 'patients/profile.html', context=context)
+
 class PatientUpdate(UpdateView):
     #? funcion para actualizar los datos de un objeto en la base de datos (paciente)
     model = Patient

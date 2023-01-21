@@ -3,7 +3,7 @@
 Listado de Pacientes
 {% endblock %}
 {% block navbar %}
-<form class="form-inline my-2 my-lg-0" action="/lists-patients/" method="GET">
+<form class="form-inline my-2 my-lg-0" action="/list-patients/" method="GET">
     <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 </form>
@@ -12,7 +12,6 @@ Listado de Pacientes
 {% block content %}
 
 <table class="table table-dark table-hover" cellspacing="5" cellpadding="5" border="3">
-    <!--<h1>Listado de familiares</h1>-->
 
 <tr class="table-active">
     <td><strong>Nombre</strong></td>
@@ -27,7 +26,7 @@ Listado de Pacientes
 
 <tr>
     
-    <td>{{patient.name}}</td>
+    <td><a href="/profile/{{patient.id}}/">{{patient.name}}</a></td>
 
     <td>{{patient.surname}}</td>
 

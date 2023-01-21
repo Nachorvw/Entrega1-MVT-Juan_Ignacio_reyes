@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -9,6 +10,8 @@ class Patient(models.Model):
     dni = models.IntegerField(blank=False)
     birth_date = models.DateField(blank=False)
     affiliate_code = models.IntegerField(blank=False)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE,blank=True)
+
 
     def __str__(self):
         return self.name
@@ -16,6 +19,7 @@ class Patient(models.Model):
     class Meta:
         verbose_name = 'Paciente'
         verbose_name_plural = 'Pacientes'
+        
 
 class Orders(models.Model):
     order_type = models.CharField(max_length=50,blank=False)
@@ -23,12 +27,14 @@ class Orders(models.Model):
     done = models.BooleanField(default=False)
     description = models.CharField(max_length=200)
 
-    def __str__(self):
-        return self.order_type
-
     class Meta:
         verbose_name = 'Orden'
         verbose_name_plural = 'Ordenes'
+    
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.order_type
 
 class Medicines(models.Model):
     name = models.CharField(max_length=50,blank=False)
@@ -43,4 +49,5 @@ class Medicines(models.Model):
     class Meta:
         verbose_name = 'Receta'
         verbose_name_plural = 'Recetas'
+        
 

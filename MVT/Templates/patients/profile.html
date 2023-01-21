@@ -1,19 +1,34 @@
 {% extends 'base.html' %}
-
 {% block title %}  
-Listado de Ordenes
+Listado de Pacientes
 {% endblock %}
-
 {% block navbar %}
-<form class="form-inline my-2 my-lg-0 d-flex" action="/list-orders/" method="GET">
+<form class="form-inline my-2 my-lg-0" action="/list-patients/" method="GET">
     <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 </form>
 {% endblock %}
-
 {% block content %}
 
-    {% for order in order_list %}
+
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{patient.name}}</h5>
+        <p class="card-text">{{patient.affiliate_code}} , {{patient.birth_date}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{patient.surname}}</li>
+        <li class="list-group-item">{{patient.age}}</li>
+        <li class="list-group-item">{{patient.dni}}</li>
+        <li class="list-group-item"></li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">{{patient.birth_date}}</a>
+        <a href="#" class="card-link">Another link</a>
+    </div>
+</div>
+{% for order in orders %}
 {% if order.done %}
 <div class="card mb-3 mt-3 flex border-success" style="max-width: 540px;">
 {% else %}
@@ -51,52 +66,5 @@ Listado de Ordenes
         </div>
         </div>
     </div>
-
-    {% endfor %}
-
+{% endfor %}
 {% endblock %}
-
-
-
-
-
-<!--
-    <p> tipo de orden: {{order.order_type}}</p>
-        <p>fecha de indicacion: {{order.indication_date}}</p>
-        {% if order.done %}
-            <p>la orden fue completada</p>
-        {% else %}
-            <p>la orden no fue completada</p>
-        {% endif %}
-        <p>descripcion: {{order.description}}</p>
--->
-
-
-<!--<div class="card mb-3 mt-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                {% if order.order_type == "Laboratorio" %}
-                    <img src="https://www.labdiagnostica.com/wp-content/uploads/2022/05/prueba-de-diabetes-laboratorio-diagnostica.jpg" class="img-fluid rounded-start">
-                {% elif order.order_type == "Consulta con profesional" %}
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                {% elif order.order_type == "Estudios" %}
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                {% else %}
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                {% endif %}
-        </div>
-        <div class="col-md-8">
-            <div class="card-body">
-                <h5 class="card-title">Orden de {{order.order_type}}</h5>
-                <p class="card-text">{{order.description}}</p>
-                <p class="card-text">{% if order.done %}
-                                        la orden fue completada
-                                    {% else %}
-                                        la orden no fue completada
-                                    {% endif %}
-                </p>
-                <p class="card-text"><small class="text-muted">fecha de indicacion: {{order.indication_date}}</small></p>
-            </div>
-        </div>
-        </div>
-    </div>-->
