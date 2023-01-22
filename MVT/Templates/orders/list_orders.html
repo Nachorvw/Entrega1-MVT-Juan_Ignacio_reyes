@@ -44,10 +44,12 @@ Listado de Ordenes
                 </p>
                 <p class="card-text"><small class="text-muted">fecha de indicacion: {{order.indication_date}}</small></p>
             </div>
+            {% if request.user.is_superuser %}
             <div class="card-footer">
                 <a href="/update-order/{{order.id}}/" class="btn btn-primary mr-5">Actualizar</a>
                 <a href="/delete-order/{{order.id}}/" class="btn btn-danger ml-5">Eliminar</a>
             </div>
+            {% endif %}
         </div>
         </div>
     </div>

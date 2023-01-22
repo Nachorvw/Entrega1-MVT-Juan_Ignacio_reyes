@@ -3,7 +3,7 @@
 Listado de Pacientes
 {% endblock %}
 {% block navbar %}
-<form class="form-inline my-2 my-lg-0" action="/list-patients/" method="GET">
+<form class="form-inline my-2 my-lg-0 d-flex" action="/list-patients/" method="GET">
     <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
 </form>
@@ -20,7 +20,9 @@ Listado de Pacientes
     <td><strong>DNI</strong></td>
     <td><strong>Fecha nacimiento</strong></td>
     <td><strong>Nro afiliado</strong></td>
+    {% if request.user.is_superuser %}
     <td><strong>actualizar/borrar</strong></td>
+    {% endif %}
 </tr>
 {% for patient in patients %}
 
@@ -38,11 +40,12 @@ Listado de Pacientes
 
     <td>{{patient.affiliate_code}}</td>
 
+    {% if request.user.is_superuser %}
     <td>
         <a href="/update-patient/{{patient.id}}/" class="btn btn-primary">Actualizar</a>
         <a href="/delete-patient/{{patient.id}}/" class="btn btn-danger">Eliminar</a>
     </td>
-
+    {% endif %}
 </tr>
 {% endfor %}
 </table>

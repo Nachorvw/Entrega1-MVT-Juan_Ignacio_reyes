@@ -11,7 +11,6 @@
     <title>{% block title %}  {% endblock %}</title>
 </head>
 <header>
-    
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark flex">
             <a class="navbar-brand" href="/">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LlQCrw7Yh54_ZSyfxi5tbiYgh6i9SNdgrQ&usqp=CAU" width="30" height="30" class="d-inline-block align-top" alt="Logo Coder">
@@ -23,18 +22,21 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav text-center">
                     <a class="nav-item nav-link" href="/">Inicio</a>
-                    <a class="nav-item nav-link" href="/create-patient/">Crear Paciente</a>
+                    {% if request.user.is_superuser %}
+                        <a class="nav-item nav-link" href="/admin/">ADMIN</a>
+                        <a class="nav-item nav-link" href="/create-patient/">Crear Paciente</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Creacion
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/create-order/">Crear Orden</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/create-medicine/">Crear Medicacion</a>
+                            </div>
+                        </li>
+                    {% endif %}
                     <a class="nav-item nav-link" href="/list-patients/">Listar Pacientes</a>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Creacion
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/create-order/">Crear Orden</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/create-medicine/">Crear Medicacion</a>
-                        </div>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Listado
@@ -45,16 +47,28 @@
                             <a class="dropdown-item" href="/list-medicines/">Listar Medicamentos</a>
                         </div>
                     </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout/">LogOut</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item border-success">
+                            <a class="nav-link" href="/login/">LogIn</a>
+                        </li>
+                        <li class="nav-item border-info">
+                            <a class="nav-link" href="/register/">Register</a>
+                        </li>
+                    {% endif %}
                     {% block navbar %}
-                    <form class="form-inline my-2 my-lg-0" action="" method="GET">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                    </form>
+                        <form class="form-inline my-2 my-lg-0 d-flex" action="" method="GET">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                        </form>
                     {% endblock %}
+                    
                 </div>
             </div>
         </nav>
-
 </header>
 <body class="bg-secondary">
 

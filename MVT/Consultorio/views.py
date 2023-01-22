@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import UpdateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from Consultorio.models import Patient, Orders, Medicines
 from Consultorio.forms import PatientsForm, OrdersForm, MedicinesForm
 # Create your views here.
@@ -35,6 +37,7 @@ def patient_creation(request):
             }
             return render(request, "patients/create_patient.html", context=context)
 
+@login_required
 def patient_list(request):
 
     #? funcion para listar la data de los pacientes en el html
@@ -60,7 +63,7 @@ def patientdetail(request,pk):
         "patient" : patient_all,
         "orders" : patient_orders,
     }
-    return render(request, 'patients/profile.html', context=context)
+    return render(request, 'patients/patient_profile.html', context=context)
 
 class PatientUpdate(UpdateView):
     #? funcion para actualizar los datos de un objeto en la base de datos (paciente)
@@ -79,6 +82,7 @@ def order_creation(request):
     if request.method == "GET":
         context = {
             "form" : OrdersForm(),
+            
         }
         return render(request, "orders/create_orders.html", context=context)
 
@@ -92,6 +96,7 @@ def order_creation(request):
                 indication_date = form.cleaned_data["indication_date"],
                 done = form.cleaned_data["done"],
                 description = form.cleaned_data["description"],
+                
             )
             return render(request, "orders/create_orders.html", context={})
 
@@ -101,7 +106,7 @@ def order_creation(request):
                 "form" : OrdersForm(),
             }
             return render(request, "orders/create_orders.html", context=context)
-
+@login_required
 def order_list(request):
     if "search" in request.GET:
         search = request.GET["search"]
@@ -150,7 +155,7 @@ def medicine_creation(request):
                 "form" : MedicinesForm(),
             }
             return render(request, "medicines/create_medicines.html", context=context)
-
+@login_required
 def medicine_list(request):
 
 

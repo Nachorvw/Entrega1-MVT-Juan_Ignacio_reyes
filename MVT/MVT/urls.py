@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate, MedicineDelete, PatientDelete, OrderDelete, patientdetail
 from MVT.views import index
+from users.views import user_login, user_register
+from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path("", index, name="index"),
     path('admin/', admin.site.urls),
@@ -33,4 +35,8 @@ urlpatterns = [
     path("update-medicine/<int:pk>/", MedicineUptade.as_view()),
     path("delete-medicine/<int:pk>/", MedicineDelete.as_view()),
     path('profile/<int:pk>/', patientdetail),
+    path("login/", user_login, name="login"),
+    path("logout/", LogoutView.as_view(template_name = "users/logout.html")),
+    path("register/", user_register),
+    
 ]

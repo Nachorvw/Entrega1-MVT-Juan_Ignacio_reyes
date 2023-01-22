@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}  
+Login
+{% endblock %}
+
+{% block content %}
+{%  if form  %}
+<h1>Log In </h1>
+
+<form class="text-light" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{form.as_table}}
+    </table>
+
+    <input type="submit" value="LogIn">
+</form>
+
+
+{% endif %}
+
+{% if errors %}
+
+<h2 style="color: red;" >{{errors}}</h2>
+
+{% endif %}
+{% endblock %}

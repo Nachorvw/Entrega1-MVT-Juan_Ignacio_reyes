@@ -17,13 +17,11 @@ class OrdersForm(forms.Form):
         ("Estudios", "Estudios"),
         ("Otros", "Otros"),
     )
-    
     order_type = forms.ChoiceField(choices=order_choices)
     indication_date = forms.DateField()
     done = forms.BooleanField(required=False)
     description = forms.CharField(max_length=200)
     patient = Patient.objects.all()
-
 class MedicinesForm(forms.Form):
     name = forms.CharField(max_length=50)
     dose = forms.FloatField()
