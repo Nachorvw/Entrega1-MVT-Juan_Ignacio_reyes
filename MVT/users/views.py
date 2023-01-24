@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from users.forms import RegisterForm, UserUpdateForm
+from users.forms import RegisterForm, UserUpdateForm, UserProfileForm
+from users.models import UserProfile
+from Consultorio.models import Patient
 # Create your views here.
 
 def user_login(request):
@@ -48,16 +50,18 @@ def user_register(request):
     elif request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            UserProfile.objects.create(user=user, affiliate_code = form.cleaned_data["affiliate_code"])
             return redirect("login")
         context = {
             "errors": form.errors,
             "form": RegisterForm(),
         }
         return render(request, "users/register.html", context=context)
-        
+
 @login_required
 def update_user(request):
+
     user = request.user
     if request.method == "GET":
         form = UserUpdateForm(
@@ -86,3 +90,35 @@ def update_user(request):
             "form": UserUpdateForm(),
         }
         return render(request, "users/update_user.html", context=context)
+
+def update_user_profile(request):
+    if request.method == "GET":
+        form = UserProfileForm(initial={
+            "age" : request.user.profile.age,
+            "dni" : request.user.profile.dni,
+            "birth_date" :request.user.profile.birth_date,
+            "phone" : request.user.profile.phone,
+            "profile_img" : request.user.profile.profile_img,
+        })
+        context = {
+            "form": form
+        }
+        return render(request, "users/update_profile.html", context=context)
+
+    elif request.method == "POST":
+        form = UserProfileForm(request.POST, request.FILES)
+        user = request.user
+        if form.is_valid():
+
+            user.profile.age = form.cleaned_data.get("age")
+            user.profile.dni = form.cleaned_data.get("dni")
+            user.profile.birth_date = form.cleaned_data.get("birth_date")
+            user.profile.phone = form.cleaned_data.get("phone")
+            user.profile.profile_img = form.cleaned_data.get("profile_img")
+            user.profile.save()
+            return redirect("index")
+        context = {
+            "errors": form.errors,
+            "form": UserProfileForm(),
+        }
+        return render(request, "users/register.html", context=context)

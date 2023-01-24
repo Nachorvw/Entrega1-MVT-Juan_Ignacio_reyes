@@ -51,8 +51,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/logout/">LogOut</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/update-user/">update</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{user.username}}
+                                {% if request.user.profile.profile_img.url != "" %}
+                                    <img src="{{request.user.profile.profile_img.url}}" width="30" height="30" class="d-inline-block align-top" alt="Logo Coder">
+                                {% endif %}
+                            </a>
+                            user-profile/
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/update-profile/">actualizar perfil</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/update-user/">actualizar usuario</a>
+                            </div>
                         </li>
                     {% else %}
                         <li class="nav-item border-success">

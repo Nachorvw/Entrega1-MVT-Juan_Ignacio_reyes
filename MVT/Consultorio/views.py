@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from Consultorio.models import Patient, Orders, Medicines
 from Consultorio.forms import PatientsForm, OrdersForm, MedicinesForm
+from users.models import UserProfile
 # Create your views here.
 
 def patient_creation(request):
@@ -96,6 +97,7 @@ def order_creation(request):
                 indication_date = form.cleaned_data["indication_date"],
                 done = form.cleaned_data["done"],
                 description = form.cleaned_data["description"],
+                patient = form.cleaned_data["patient"]
                 
             )
             return render(request, "orders/create_orders.html", context={})
