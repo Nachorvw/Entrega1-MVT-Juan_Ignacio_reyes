@@ -12,4 +12,9 @@ class UserProfile(models.Model):
     phone = models.CharField(null = True, blank=True, max_length=100)
     profile_img = models.ImageField(upload_to="profile_images", null = True, blank=True)
 
+    def __str__(self):
+        return self.user.username
 
+    class Meta:
+        verbose_name = 'Perfil'
+        verbose_name_plural = 'Perfiles'

@@ -59,7 +59,7 @@ def patient_list(request):
 def patientdetail(request,pk):
     #? funcion para ver con detalle el paciente
     patient_all = Patient.objects.get(id = pk)
-    patient_orders = Patient.objects.get(id = pk).orders_set.all()
+    patient_orders = patient_all.orders_set.all()
     context = {
         "patient" : patient_all,
         "orders" : patient_orders,
@@ -79,10 +79,13 @@ class PatientDelete(DeleteView):
     template_name = 'patients/delete_patient.html'
     success_url = '/list-patients/'
 
-def order_creation(request):
+def order_creation(request, pk):
+    patient = Patient.objects.get(id = pk)
+    form = OrdersForm(initial={"patient":patient})
     if request.method == "GET":
+        
         context = {
-            "form" : OrdersForm(),
+            "form" : form,
             
         }
         return render(request, "orders/create_orders.html", context=context)

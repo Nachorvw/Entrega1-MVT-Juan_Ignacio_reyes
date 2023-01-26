@@ -16,7 +16,7 @@ Listado de Pacientes
     <img src="{{request.user.profile.profile_img.url}}" class="card-img-top" alt="...">
     {% endif %}
     <div class="card-body">
-        <h5 class="card-title">{{patient.name}} </h5>
+        <h5 class="card-title">{{user.username}} </h5>
         <p class="card-text">numero de afiliado: {{user.profile.affiliate_code}}</p>
     </div>
     <ul class="list-group list-group-flush">

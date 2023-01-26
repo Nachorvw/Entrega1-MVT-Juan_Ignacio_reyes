@@ -11,15 +11,11 @@ creacion de Ordenes
 <form class="text-light" method="POST">
     {% csrf_token %}
 
-
+    <p>paciente: {{form.patient}}</p>
     <p>Tipo de orden: {{form.order_type}}</p>
     <p>Fecha de indicacion: <input  name="indication_date" placeholder="DD/MM/YYY" type="date"/></p>
     <p>esta completado? {{form.done}}</p>
     <p>descripcion de la orden: {{form.description}}</p>
-    
-
-    <!-- <p>para quien es la orden?: {{form.patient}} intentar hacer que se pueda elegir entre pacientes </p> -->
-    
 
     <input type="submit" value="Crear Orden">
 </form>

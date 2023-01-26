@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate, MedicineDelete, PatientDelete, OrderDelete, patientdetail
 from MVT.views import index
-from users.views import user_login, user_register, update_user, update_user_profile
+from users.views import user_login, user_register, update_user, update_user_profile, user_profile
 from django.contrib.auth.views import LogoutView
 from MVT.settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
@@ -28,7 +28,7 @@ urlpatterns = [
     path("list-patients/", patient_list),
     path("update-patient/<int:pk>/", PatientUpdate.as_view()),
     path("delete-patient/<int:pk>/", PatientDelete.as_view()),
-    path("create-order/", order_creation),
+    path("create-order/<int:pk>/", order_creation),
     path("list-orders/", order_list),
     path("update-order/<int:pk>/", OrderUpdate.as_view()),
     path("delete-order/<int:pk>/", OrderDelete.as_view()),
@@ -42,5 +42,6 @@ urlpatterns = [
     path("register/", user_register),
     path("update-user/", update_user),
     path("update-profile/", update_user_profile),
+    path("user-profile/", user_profile)
 
 ] + static(MEDIA_URL, document_root = MEDIA_ROOT)

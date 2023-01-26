@@ -14,6 +14,7 @@ Listado de Pacientes
 <table class="table table-dark table-hover" cellspacing="5" cellpadding="5" border="3">
 
 <tr class="table-active">
+    <td><strong>orden</strong></td>
     <td><strong>Nombre</strong></td>
     <td><strong>Apellido</strong></td>
     <td><strong>Edad</strong></td>
@@ -27,7 +28,8 @@ Listado de Pacientes
 {% for patient in patients %}
 
 <tr>
-    
+    <td><a href="/create-order/{{patient.id}}/" class="btn btn-primary">Crear</a></td>
+
     <td><a href="/profile/{{patient.id}}/">{{patient.name}}</a></td>
 
     <td>{{patient.surname}}</td>

@@ -10,9 +10,11 @@ Listado de Pacientes
 {% endblock %}
 {% block content %}
 
-
+{% if patient.user.profile %}
 <div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
+    {% if patient.user.profile.profile_img.url != "" %}
+    <img src="{{patient.user.profile.profile_img.url}}" class="card-img-top" alt="...">
+    {% endif %}
     <div class="card-body">
         <h5 class="card-title">{{patient.name}}</h5>
         <p class="card-text">{{patient.affiliate_code}} , {{patient.birth_date}}</p>
@@ -21,13 +23,30 @@ Listado de Pacientes
         <li class="list-group-item">{{patient.surname}}</li>
         <li class="list-group-item">{{patient.age}}</li>
         <li class="list-group-item">{{patient.dni}}</li>
-        <li class="list-group-item"></li>
+        <li class="list-group-item">{{patient.user.profile.phone}}</li>
     </ul>
     <div class="card-body">
         <a href="#" class="card-link">{{patient.birth_date}}</a>
         <a href="#" class="card-link">Another link</a>
     </div>
 </div>
+{% else %}
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">{{patient.name}}</h5>
+        <p class="card-text">{{patient.affiliate_code}} , {{patient.birth_date}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">{{patient.surname}}</li>
+        <li class="list-group-item">{{patient.age}}</li>
+        <li class="list-group-item">{{patient.dni}}</li>
+    </ul>
+    <div class="card-body">
+        <a href="#" class="card-link">{{patient.birth_date}}</a>
+        <a href="#" class="card-link">Another link</a>
+    </div>
+</div>
+{% endif %}
 {% for order in orders %}
 {% if order.done %}
 <div class="card mb-3 mt-3 flex border-success" style="max-width: 540px;">
@@ -49,7 +68,7 @@ Listado de Pacientes
         <div class="col-md-8">
             <div class="card-body">
                 <h6 class="card-title">para {{order.patient}}</h6>
-                <h5 class="card-title">orden de{{order.order_type}}</h5>
+                <h5 class="card-title">orden de {{order.order_type}}</h5>
                 <p class="card-text">{{order.description}}</p>
                 <p class="card-text">{% if order.done %}
                                         la orden fue completada

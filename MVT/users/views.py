@@ -91,6 +91,9 @@ def update_user(request):
         }
         return render(request, "users/update_user.html", context=context)
 
+def user_profile(request):
+    pass
+
 def update_user_profile(request):
     if request.method == "GET":
         form = UserProfileForm(initial={

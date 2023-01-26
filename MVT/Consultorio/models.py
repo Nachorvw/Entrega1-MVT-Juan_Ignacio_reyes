@@ -22,7 +22,13 @@ class Patient(models.Model):
         
 
 class Orders(models.Model):
-    order_type = models.CharField(max_length=50,blank=False)
+    order_choices = (
+        ("Laboratorio", "Laboratorio"),
+        ("Consulta con profesional", "Consulta con profesional"),
+        ("Estudios", "Estudios"), 
+        ("Otros", "Otros"),
+    )
+    order_type = models.CharField(choices=order_choices, max_length=100)
     indication_date = models.DateField(blank=False)
     done = models.BooleanField(default=False)
     description = models.CharField(max_length=200)

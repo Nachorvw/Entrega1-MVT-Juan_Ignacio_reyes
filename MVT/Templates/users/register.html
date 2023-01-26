@@ -1,29 +1,58 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}  
 Register
 {% endblock %}
-
+{% block header %}
+<!-- solucion rara para no incluir la navbar -->
+{% endblock header %}
 {% block content %}
+<link rel="stylesheet" href="{% static '/css/styleLogin.css' %}">
 {%  if form  %}
-<h1>Complete el formulario para registrarse </h1>
 
-<form class="text-light" method="POST">
+<form class="text-dark" method="POST">
     {% csrf_token %}
-
-    <table>
-        {{form.as_table}}
-    </table>
-
-    <input type="submit" value="LogIn">
+    <div class="login">
+        <h1 class="text-center">Registro</h1>
+    <div class="form-group">
+        <label class="form-label" for="username">Usuario</label>
+        <input class="form-control" type="text" id="username" name="username">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">nombre</label>
+        <input class="form-control" type="text" id="first_name" name="first_name">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">apellido</label>
+        <input class="form-control" type="text" id="last_name" name="last_name">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">email</label>
+        <input class="form-control" type="text" id="email" name="email">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">numero de afiliado</label>
+        <input class="form-control" type="number" id="password" name="affiliate_code">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">Contraseña</label>
+        <input class="form-control" type="password" id="password" name="password1">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="password">repetir contraseña</label>
+        <input class="form-control" type="password" id="password" name="password2">
+    </div>
+    <hr>
+    <input class="btn btn-success w-100" type="submit" value="Iniciar Sesion">
 </form>
+</div>
 
 
 {% endif %}
 
 {% if errors %}
 
-<h2 style="color: red;" >{{errors}}</h2>
+<h1 style="color: red;" >{{errors}}</h1>
 
 {% endif %}
 {% endblock %}
