@@ -113,13 +113,14 @@ def order_creation(request, pk):
             return render(request, "orders/create_orders.html", context=context)
 @login_required
 def order_list(request):
+    
     if "search" in request.GET:
         search = request.GET["search"]
         list_orders = Orders.objects.filter(order_type__icontains = search)
     else:
         list_orders = Orders.objects.all()
     context = {
-        "order_list" : list_orders,
+        "order_list": list_orders   
     }
     return render(request, "orders/list_orders.html", context=context)
 

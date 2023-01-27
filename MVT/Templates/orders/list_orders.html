@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}  
 Listado de Ordenes
 {% endblock %}
@@ -12,8 +12,9 @@ Listado de Ordenes
 {% endblock %}
 
 {% block content %}
-<div class="listcard">
+<link rel="stylesheet" href="{% static '/css/styleListCards.css' %}">
     {% for order in order_list %}
+    <div class="listCard">
     {% if order.done %}
     <div class="card mb-3 mt-3 flex border-success" style="max-width: 540px;">
     {% else %}
@@ -54,8 +55,10 @@ Listado de Ordenes
             </div>
         </div>
     </div>
-    {% endfor %}
+
 </div>
+    {% endfor %}
+
 {% endblock %}
 
 
