@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 *{
     margin: 0;
     padding: 0; 
@@ -8,27 +9,68 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    font-family: 'Noto Sans', sans-serif;
 }
+
 .login {
-    width: 360px;
-    height: min-content;
+    width: auto;
+    height: auto;
     padding: 20px;
     border-radius: 12px;
     background: white;
+    display: grid;
+    grid-template-rows: repeat(6,auto);
+    grid-template-columns: auto 150px auto;
 }
 .login h1 {
     font-size: 36px;
     margin-bottom: 25px;
+    grid-column: 2;
 }
 .login form {
+    display: grid;
     font-size: 20px;
 }
 
 .login form .form-group{
+    display: grid;
     margin-bottom: 12px;
 }
-.login form input[type= "submit"]{
+.btn{
     font-size: 20px;
     margin-top: 15px;
+    grid-column: 2;
+    grid-row: 6;
+}
+.form-group:nth-child(2){
+    grid-column: 1;
+    grid-row: 2;
+}
+.form-group:nth-child(3){
+    grid-column: 1;
+    grid-row: 3;
+}
+.form-group:nth-child(4){
+    grid-column: 1;
+    grid-row: 4;
+}
+.form-group:nth-child(5){
+    grid-column: 3;
+    grid-row: 2;
+}
+.form-group:nth-child(6){
+    grid-column: 3;
+    grid-row: 3;
+}
+.form-group:nth-child(7){
+    grid-column: 3;
+    grid-row: 4;
+}
+.form-group:nth-child(8){
+    grid-column: 3;
+    grid-row: 5;
+}
+.form-group:nth-child(9){
+    grid-column: 1;
+    grid-row: 5;
 }

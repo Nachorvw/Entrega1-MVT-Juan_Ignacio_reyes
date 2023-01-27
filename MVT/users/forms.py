@@ -6,7 +6,7 @@ class RegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=100, required=True, label="nombre")
     last_name = forms.CharField(max_length=100, required=True, label="apellido")
     affiliate_code = forms.IntegerField(required=True, label="numero de afiliado")
-    
+    dni = forms.IntegerField(required=True, label="dni")
     class Meta:
         model = User
         fields = ["username", "first_name", "last_name", "email", "password1", "password2"]

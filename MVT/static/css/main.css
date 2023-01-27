@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+
+.body{
+    font-family: 'Noto Sans', sans-serif;
+    background-color: rgb(15 15 15);
+}
+.navbar{
+    background-color: rgb(113 113 113);
+}

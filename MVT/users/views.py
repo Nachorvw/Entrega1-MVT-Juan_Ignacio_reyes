@@ -51,7 +51,7 @@ def user_register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            UserProfile.objects.create(user=user, affiliate_code = form.cleaned_data["affiliate_code"])
+            UserProfile.objects.create(user=user, affiliate_code = form.cleaned_data["affiliate_code"], dni = form.cleaned_data["dni"])
             return redirect("login")
         context = {
             "errors": form.errors,
