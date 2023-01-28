@@ -8,7 +8,7 @@ Actualizar perfil
 {%  if form  %}
 <h1>actualizar perfil: {{user.username}} </h1>
 
-<form class="text-light" method="POST">
+<form class="text-light" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <table>
