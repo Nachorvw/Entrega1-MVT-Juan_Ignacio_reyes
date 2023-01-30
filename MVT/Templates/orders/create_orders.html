@@ -1,23 +1,39 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}  
 creacion de Ordenes
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static '/css/styleCreation.css' %}">
 
 {% if form %}
-<h1 style="color: white;">creacion de ordenes</h1>
-
-<form class="text-light" method="POST">
+<h1>creacion de ordenes</h1>
+<!-- ARREGLAR EL ORDERS_HTML!!!!! -->
+<form class="create" method="POST">
     {% csrf_token %}
+    <label for="patient">
+        paciente:
+        {{form.patient}}
+    </label>
+    <label for="order_type">
+        Tipo de orden: 
+        {{form.order_type}}
+    </label>
+    <label for="indication_date">
+        Fecha de indicacion: 
+        <input  name="indication_date" placeholder="DD/MM/YYY" type="date"/>
+    </label>
+    <label for="done">
+        orden completa/incompleta 
+        {{form.done}}
+    </label>
+    <label for="description">
+        descripcion de la orden: 
+        {{form.description}}
+    </label>
 
-    <p>paciente: {{form.patient}}</p>
-    <p>Tipo de orden: {{form.order_type}}</p>
-    <p>Fecha de indicacion: <input  name="indication_date" placeholder="DD/MM/YYY" type="date"/></p>
-    <p>esta completado? {{form.done}}</p>
-    <p>descripcion de la orden: {{form.description}}</p>
-
-    <input type="submit" value="Crear Orden">
+    <input class="btn btn-success" id="create-btn" type="submit" value="Crear Orden">
 </form>
 {% else %}
 <h1 class="text-success">la orden se creo exitosamente</h1>

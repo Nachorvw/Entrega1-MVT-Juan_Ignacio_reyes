@@ -1,9 +1,58 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
-
+/* css for body navbar and footer */
 .body{
     font-family: 'Noto Sans', sans-serif;
     background-color: rgb(15 15 15);
 }
-.navbar{
+
+#navbar{
     background-color: rgb(113 113 113);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+/* ---------------------------------------- */
+
+/* css for List orders and medicines */
+.containerOrder
+{
+    height: auto;
+    display: flex !important; 
+    flex-wrap: wrap;
+    color: black;
+    gap: 2.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 1.5rem;
+}
+.card-border1{
+    outline: 0.4rem ridge rgba(47, 199, 72, 0.6);
+    border-radius: 0.1rem;
+}
+.card-border2{
+    outline: 0.4rem ridge rgba(204, 31, 19, 0.6);
+    border-radius: 0.1rem;
+}
+.card-header{
+    height: 13rem;
+    object-fit: contain;
+}
+.card-body{
+    min-height: 16rem;
+}
+#btn1 {
+    float: left;
+    display: block;
+}
+#btn2 {
+    float: right;
+    display: block;
+}
+/* ---------------------------------------- */
+
+/* css for patient, order and medicine creation */
+.create-patient{
+    max-width: 500px;
+    margin: 2rem auto;
+    border: 2px solid white;
 }

@@ -1,0 +1,37 @@
+.create{
+    max-width: 40%;
+    margin: 2rem auto;
+    border: 2px solid white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    color: white;
+    align-self: center;
+}
+label{
+    display: block;
+    color: white;
+    padding: 0.5rem;
+
+}
+input{
+    display: block;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+}
+.input{
+    display: block;
+    width: 100%;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+}
+#create-btn{
+    padding: 0.5rem;
+    margin: 1rem 0;
+    width: 50%;
+    align-self: center;
+}

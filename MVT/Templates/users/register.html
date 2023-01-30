@@ -12,14 +12,11 @@ Register
 
 <form class="text-dark" method="POST">
     {% csrf_token %}
-    <div class="login">
+    <div class="register">
             <h1 class="text-center">Registro</h1>
         <div class="form-group">
             <label class="form-label" for="username">Usuario</label>
             <input class="form-control" type="text" id="username" name="username">
-            <div class="invalid-feedback">
-                {{errors.username}}
-            </div>
         </div>
         <div class="form-group">
             <label class="form-label" for="name">nombre</label>
@@ -28,6 +25,10 @@ Register
         <div class="form-group">
             <label class="form-label" id="last_name" for="last_name">apellido</label>
             <input class="form-control" type="text" id="last_name" name="last_name">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="dni">dni</label>
+            <input class="form-control" type="number" id="dni" name="dni">
         </div>
         <div class="form-group">
             <label class="form-label" for="email">email</label>
@@ -45,13 +46,8 @@ Register
             <label class="form-label" for="password2">repetir contraseña</label>
             <input class="form-control" type="password" id="password" name="password2">
         </div>
-
-        <div class="form-group">
-            <label class="form-label" for="dni">dni</label>
-            <input class="form-control" type="number" id="dni" name="dni">
-        </div>
         
-        <input class="btn btn-success w-100"  type="submit" value="Iniciar Sesion">
+        <input class="btn btn-success w-100"  type="submit" value="Registrarse">
     </div>
 </form>
 

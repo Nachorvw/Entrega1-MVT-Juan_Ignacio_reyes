@@ -1,24 +1,42 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}  
 creacion de Pacientes
 {% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static '/css/styleCreation.css' %}">
 {%  if form  %}
-<h1 style="color: white;">Creacion de pacientes</h1>
-
-<form class="text-light" method="POST">
+<form class="create" method="POST">
+    <h1>Creacion de paciente</h1>
     {% csrf_token %}
 
-    <p>Nombre: <input type="text" name="name"></p>
-    <p>Apellido: <input type="text" name="surname"></p>
-    <p>Edad: <input type="number" name="age"></p>
-    <p>DNI: {{form.dni}}</p>
-    <p>Fecha de nacimiento: <input  name="birth_date" placeholder="DD/MM/YYY" type="date"/></p>
-    <p>Numero de afiliado: <input type="number" name="affiliate_code"></p>
+    <label for="first_name"> 
+        Nombre:
+        <input type="text" name="name">
+    </label>
+    <label for="last_name">
+        Apellido: 
+        <input type="text" name="surname">
+    </label>
+    <label for="age">
+        Edad: 
+        <input type="number" name="age">
+    </label>
+    <label for="Dni">
+        DNI:
+        {{form.dni}}
+    </label>
+    <label for="birth_date">
+        Fecha de nacimiento:
+        <input  name="birth_date" placeholder="DD/MM/YYY" type="date"/>
+    </label>
+    <label for="affiliate_code">
+        Numero de afiliado:
+        <input type="number" name="affiliate_code">
+    </label>
 
-    <input type="submit" value="Crear Paciente">
+    <input class="btn btn-success" id="create-btn" type="submit" value="Crear Paciente">
 </form>
 
 
@@ -32,4 +50,5 @@ creacion de Pacientes
 <h2 style="color: red;" >Errores:</h2>
 {{form_errors}}
 {% endif %}
+
 {% endblock %}

@@ -12,7 +12,6 @@ class PatientsForm(forms.Form):
     affiliate_code = forms.IntegerField()
 
 class OrdersForm(ModelForm):
-    
     class Meta:
         model = Orders
         fields = "__all__"
