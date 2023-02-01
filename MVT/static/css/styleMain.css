@@ -11,6 +11,9 @@
     top: 0;
     z-index: 1;
 }
+#navbar-profile-img{
+    border-radius: 20%;
+}
 /* ---------------------------------------- */
 
 /* css for List orders and medicines */
@@ -50,9 +53,16 @@
 }
 /* ---------------------------------------- */
 
-/* css for patient, order and medicine creation */
-.create-patient{
-    max-width: 500px;
-    margin: 2rem auto;
-    border: 2px solid white;
+/* css for profile and profile settings */
+.profile-img{
+    max-width: 200px;
+    max-height:200px;
+    margin: 0 auto;
+    border-radius: 10%;
+}
+#conf-profile-h3{
+    text-align: center;
+}
+#btn-back-profile, #update-information{
+    margin: 1rem;
 }

@@ -12,13 +12,21 @@ creacion de Ordenes
 <!-- ARREGLAR EL ORDERS_HTML!!!!! -->
 <form class="create" method="POST">
     {% csrf_token %}
-    <label for="patient">
-        paciente:
-        {{form.patient}}
+    <label for="patient">Paciente:
+            <select id="inputState" class="form-control" name="patient">
+            <option selected>elegir...</option>
+            {% for patient in form.patient %}
+                <option>{{patient}}</option>
+            {% endfor %}
+        </select>
     </label>
-    <label for="order_type">
-        Tipo de orden: 
-        {{form.order_type}}
+    <label for="order_type">Tipo de orden:
+        <select id="inputState" class="form-control" name="order_type">
+        <option selected>elegir...</option>
+            {% for order in form.order_type %}
+                <option>{{order}}</option>
+            {% endfor %}
+    </select>
     </label>
     <label for="indication_date">
         Fecha de indicacion: 
@@ -28,11 +36,10 @@ creacion de Ordenes
         orden completa/incompleta 
         {{form.done}}
     </label>
-    <label for="description">
-        descripcion de la orden: 
-        {{form.description}}
+    <label for="description">descripcion de la orden:
+        <textarea class="form-control" id="description" rows="3" name="description"></textarea>
     </label>
-
+    
     <input class="btn btn-success" id="create-btn" type="submit" value="Crear Orden">
 </form>
 {% else %}

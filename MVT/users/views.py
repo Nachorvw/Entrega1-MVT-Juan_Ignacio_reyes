@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from users.forms import RegisterForm, UserUpdateForm, UserProfileForm
 from users.models import UserProfile
-from Consultorio.models import Patient
-# Create your views here.
+from MVT.decorators import logged_in_user, allowed_users
 
+# Create your views here.
+@logged_in_user
 def user_login(request):
     if request.method == "GET":
         form = AuthenticationForm()
@@ -38,7 +40,7 @@ def user_login(request):
         }
         return render(request, "users/login.html", context=context)
         
-
+@logged_in_user
 def user_register(request):
     if request.method == "GET":
         form = RegisterForm()
@@ -52,6 +54,8 @@ def user_register(request):
         if form.is_valid():
             user = form.save()
             UserProfile.objects.create(user=user, affiliate_code = form.cleaned_data["affiliate_code"], dni = form.cleaned_data["dni"])
+            group = Group.objects.get(name = ("Paciente")) #?cuando se crea el paciente, se le asigna automaticamente el grupo "paciente"
+            user.groups.add(group)
             return redirect("login")
         context = {
             "errors": form.errors,
@@ -60,6 +64,7 @@ def user_register(request):
         return render(request, "users/register.html", context=context)
 
 @login_required
+@allowed_users(allowed_roles=["Paciente"])
 def update_user(request):
 
     user = request.user
@@ -73,9 +78,9 @@ def update_user(request):
             } 
         )
         context = {
-            "form": form
+            "form_user": form
         }
-        return render(request, "users/update_user.html", context=context)
+        return render(request, "users/update_profile.html", context=context)
 
     elif request.method == "POST":
         form = UserUpdateForm(request.POST)
@@ -89,11 +94,18 @@ def update_user(request):
             "errors": form.errors,
             "form": UserUpdateForm(),
         }
-        return render(request, "users/update_user.html", context=context)
+        return render(request, "users/update_profile.html", context=context)
 
-def user_profile(request):
-    pass
+@login_required
+def user_profile_page(request):
+    orders = request.user.patient.orders_set.all()
+    context = {
+        "orders" : orders,
+    }
+    return render(request, "users/user_profile.html", context=context)
 
+@login_required
+@allowed_users(allowed_roles=["Paciente"])
 def update_user_profile(request):
     if request.method == "GET":
         form = UserProfileForm(initial={
@@ -104,7 +116,7 @@ def update_user_profile(request):
             "profile_img" : request.user.profile.profile_img,
         })
         context = {
-            "form": form
+            "form_profile": form,
         }
         return render(request, "users/update_profile.html", context=context)
 
@@ -112,7 +124,6 @@ def update_user_profile(request):
         form = UserProfileForm(request.POST, request.FILES)
         user = request.user
         if form.is_valid():
-
             user.profile.age = form.cleaned_data.get("age")
             user.profile.dni = form.cleaned_data.get("dni")
             user.profile.birth_date = form.cleaned_data.get("birth_date")

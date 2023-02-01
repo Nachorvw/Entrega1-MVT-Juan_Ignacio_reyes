@@ -54,7 +54,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{user.username}} {% if request.user.profile.profile_img.url != ""%}
-                        <img src="{{request.user.profile.profile_img.url}}" width="30" height="30"
+                        <img id="navbar-profile-img" src="{{request.user.profile.profile_img.url}}" width="30" height="30"
                             class="d-inline-block align-top" alt="Logo Coder" />
                         {% endif %}
                     </a>
@@ -87,7 +87,11 @@
 {% endblock header %}
 
 <body class="body">
-    {% block content %} {% endblock %}
+    {% if messages %}
+
+{% endif %}
+    {% block content %} 
+    {% endblock %}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -110,6 +114,8 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+    
 </body>
 {% block footer %}
 <footer></footer>

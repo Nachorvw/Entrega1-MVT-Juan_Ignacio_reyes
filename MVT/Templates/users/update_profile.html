@@ -1,26 +1,81 @@
 {% extends 'base.html' %}
-
 {% block title %}  
 Actualizar perfil
 {% endblock %}
 
 {% block content %}
-{%  if form  %}
-<h1>actualizar perfil: {{user.username}} </h1>
+{%  if form_profile  %}
 
-<form class="text-light" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <table>
-        {{form.as_table}}
-    </table>
-
-    <input type="submit" value="actualizar">
-</form>
-
-
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<hr>
+			<h3 id="conf-profile-h3">Configuracion de perfil</h3>
+			<hr>
+			<img class="profile-img" src="{{request.user.profile.profile_img.url}}" >
+            <a id="btn-back-profile" class="btn btn-warning" href="/user-profile/"> &#8592; volver al perfil</a>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="form-group">
+                    <label class="form-label" for="age">Edad</label>
+                    <input class="form-control" type="number" id="age" name="age">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="dni">DNI</label>
+                    <input class="form-control" type="number" id="dni" name="dni">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Numero de telefono</label>
+                    <input class="form-control" type="number" id="phone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="profile_img">Imagen de perfil</label>
+                    <input class="form-control" type="file" id="profile_img" name="profile_img">
+                </div>
+			<input id="update-information" class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+{% elif form_user %}
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<hr>
+			<h3 id="conf-profile-h3">Configuracion de usuario</h3>
+			<hr>
+			<img class="profile-img" src="{{request.user.profile.profile_img.url}}" >
+            <a id="btn-back-profile" class="btn btn-warning" href="/user-profile/"> &#8592; volver al perfil</a>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="form-group">
+                    <label class="form-label" for="username">Usuario</label>
+                    <input class="form-control" type="text" id="username" name="username">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="first_name">Nombre</label>
+                    <input class="form-control" type="text" id="first_name" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="last_name">Apellido</label>
+                    <input class="form-control" type="text" id="last_name" name="last_name">
+                </div>
+			<input id="update-information" class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
 {% endif %}
-
 {% if errors %}
 
 <h2 style="color: red;" >{{errors}}</h2>
