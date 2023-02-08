@@ -25,13 +25,12 @@
 - Clonar el proyecto con ``` git clone git@github.com:Nachorvw/MVT-Juan_Ignacio.git```
 - Crear entorno virtual con `Pipenv` or `virtualenv` and activate it.
 - Instalar los requerimientos
-    Django==4.1.6(
+```sh
+    -Django==4.1.6(
         -asgiref==3.6.0
         -sqlparse==0.4.3
         -tzdata==2022.7)
-    Pillow==9.4.0
-```sh
-    pip install -r requirements.txt
+    -Pillow==9.4.0
 ```
 - Ejecutar las migraciones
 ```sh
