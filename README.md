@@ -2,22 +2,8 @@
 
 ### Hi there 👋 
 
-<!--
-Esto no se ve pero fijate que tenes iconos y demas cosas para modificar a tu gusto, tomalo como plantilla is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
-
-# **Entrega Intermedia Coderhouse**
+# **Entrega Final Coderhouse**
 ## Consultorio Web.
 
 
@@ -26,7 +12,7 @@ Here are some ideas to get you started:
 
 
 ##Descripción del proyecto
-- Pagina web para la utilizacion en un **consultorio**, donde se podran empadronar pacientes, crear recetas y ordenes de practica, a su vez se podran **listar**,**filtrar**, **actualizar** y **eliminar cada uno de los datos** 
+- Pagina web para la utilizacion en un **consultorio**, donde se podran empadronar pacientes, crear recetas y ordenes de practica, a su vez se podran **listar**,**filtrar**, **actualizar** y **eliminar cada uno de los datos**, La pagina cuenta con inicio, registro y deslogueo de sesion, cada usuario nuevo o viejo tiene su propio perfil modificable, donde se podran subir imagenes, cada paciente se unira a un usuario mediante un administrador, asi cada usuario podra ver sus ordenes de practica mediante su perfil.
 
 
 
@@ -39,27 +25,32 @@ Here are some ideas to get you started:
 - Clonar el proyecto con ``` git clone git@github.com:Nachorvw/MVT-Juan_Ignacio.git```
 - Crear entorno virtual con `Pipenv` or `virtualenv` and activate it.
 - Instalar los requerimientos
-<!--esto es para escribir codigo el que quieran -->
+    Django==4.1.6(
+        -asgiref==3.6.0
+        -sqlparse==0.4.3
+        -tzdata==2022.7)
+    Pillow==9.4.0
 ```sh
     pip install -r requirements.txt
 ```
 - Ejecutar las migraciones
 ```sh
     $python manage.py makemigrations
-    $python manage.py runserver
+    $python manage.py migrate
 ```
 - Ejecutar el proyecto
 ```sh
     python manage.py runserver
 ```
 ## *Presentación de proyecto*
-Entrega Intermedia para curso Python coderhouse <a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://i0.wp.com/edtechreviews.net/wp-content/uploads/2021/12/coderhouse_logo.png?resize=750%2C750&ssl=1" alt="logo Coderhouse"></a>, 
+Entrega Final para curso Python coderhouse <a href="https://bikelovers.vercel.app/" target="_blank" rel="noopener noreferrer"><img width="20%" src="https://i0.wp.com/edtechreviews.net/wp-content/uploads/2021/12/coderhouse_logo.png?resize=750%2C750&ssl=1" alt="logo Coderhouse"></a>, 
 Consigna:
-1) Herencia de HTML.
-2) Por lo menos 3 clases en models.
-3) Un formulario para insertar datos a todas las clases de tu models.
-4) Un formulario para buscar algo en la BD
-5) Readme que indique el orden en el que se prueban las cosas y/o donde están las funcionalidades
+1) Inicio: Al momento de ingresar a la app en la ruta base ‘/’.
+2) Poder listar todos los elementos, poder ver en detalle cada uno, poder crear, editar o borrar los mismos.
+3) Tener una app de registro donde se puedan registrar usuarios en el route accounts/signup, un usuario está compuesto por: email - contraseña - nombre de usuario
+4) Tener una app de login en el route accounts/login/ la cual permite loguearse con los datos de administrador o de usuario normal.
+5) Tener una app de perfiles en el route accounts/profile/ la cual muestra la info de nuestro usuario y permite poder modificar y/o borrar: imagen - nombre - descripción -  un link a una página web - email y contraseña
+6)Contar con un admin en route admin/ donde se puedan manejar las apps y los datos en las apps.
 
 <!--se pueden poner imagenes es bueno-->
 
