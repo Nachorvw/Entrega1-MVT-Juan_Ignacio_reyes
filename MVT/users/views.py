@@ -7,7 +7,7 @@ from users.forms import RegisterForm, UserUpdateForm, UserProfileForm
 from users.models import UserProfile
 from MVT.decorators import logged_in_user, allowed_users
 
-# Create your views here.
+
 @logged_in_user
 def user_login(request):
     if request.method == "GET":
@@ -28,10 +28,7 @@ def user_login(request):
 
             if user is not None:
                 login(request, user)
-                context = {
-                    "message" : f"bienvenido {username}!"
-                }
-                return render(request, "index.html", context=context)
+                return redirect("index")
 
         form = AuthenticationForm()
         context = {
@@ -54,7 +51,7 @@ def user_register(request):
         if form.is_valid():
             user = form.save()
             UserProfile.objects.create(user=user, affiliate_code = form.cleaned_data["affiliate_code"], dni = form.cleaned_data["dni"])
-            group = Group.objects.get(name = ("Paciente")) #?cuando se crea el paciente, se le asigna automaticamente el grupo "paciente"
+            group = Group.objects.get(name = ("Paciente")) #?when we create a patient, it gets assigned the "paciente" group
             user.groups.add(group)
             return redirect("login")
         context = {
@@ -69,12 +66,11 @@ def update_user(request):
 
     user = request.user
     if request.method == "GET":
-        form = UserUpdateForm(
+        form = UserUpdateForm(#? we get the data from the object 
             initial = {
                 "username": user.username,
                 "first_name": user.first_name,
                 "last_name": user.last_name,
-
             } 
         )
         context = {
@@ -89,7 +85,7 @@ def update_user(request):
             user.first_name = form.cleaned_data.get("first_name")
             user.last_name = form.cleaned_data.get("last_name")
             user.save()
-            return redirect("index")
+            return redirect("/user-profile/") #? if all is valid, we redirect the user to its profile with the updated data
         context = {
             "errors": form.errors,
             "form": UserUpdateForm(),
@@ -98,22 +94,27 @@ def update_user(request):
 
 @login_required
 def user_profile_page(request):
-    orders = request.user.patient.orders_set.all()
-    context = {
+    #? a "fix" to the (RelatedObjectDoesNotExist) we try to get the patient in the user
+    try:
+        orders = request.user.patient.orders_set.all() #? we get the orders from the patient in that user
+        context = {
         "orders" : orders,
-    }
+        }
+    except: #? if the user has no patient, we simply return nothing
+        context = {
+        }
     return render(request, "users/user_profile.html", context=context)
 
 @login_required
 @allowed_users(allowed_roles=["Paciente"])
 def update_user_profile(request):
     if request.method == "GET":
+        user = request.user
         form = UserProfileForm(initial={
-            "age" : request.user.profile.age,
-            "dni" : request.user.profile.dni,
-            "birth_date" :request.user.profile.birth_date,
-            "phone" : request.user.profile.phone,
-            "profile_img" : request.user.profile.profile_img,
+            "age" : user.profile.age,
+            "dni" : user.profile.dni,
+            "phone" : user.profile.phone,
+            "profile_img" : user.profile.profile_img,
         })
         context = {
             "form_profile": form,
@@ -130,7 +131,7 @@ def update_user_profile(request):
             user.profile.phone = form.cleaned_data.get("phone")
             user.profile.profile_img = form.cleaned_data.get("profile_img")
             user.profile.save()
-            return redirect("index")
+            return redirect("/user-profile/")
         context = {
             "errors": form.errors,
             "form": UserProfileForm(),

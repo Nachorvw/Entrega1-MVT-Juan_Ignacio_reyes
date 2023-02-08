@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Actualizacion de Ordenes
 {% endblock %}
 
 {% block content %}
-    <h1>Actualizacion de Oredenes</h1>
+<link rel="stylesheet" href="{% static '/css/styleCreation.css' %}">
 
 
 
     {% if form %}
 
-        <form class="text-light" method="POST">
+        <form class="create" method="POST">
+            <h1>Actualizacion de Oredenes</h1>
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <input type="submit" value="Actualizar">
+            <label for="order_type">Tipo de orden:
+                <select id="inputState" class="form-control" name="order_type">
+                <option selected>elegir...</option>
+                    {% for order in form.order_type %}
+                        <option>{{order}}</option>
+                    {% endfor %}
+            </select>
+            </label>
+            <label for="indication_date">
+                Fecha de indicacion: 
+                {{form.indication_date}}
+            </label>
+            <label for="done">
+                orden completa/incompleta 
+                {{form.done}}
+            </label>
+            <label for="description">descripcion de la orden:
+                {{form.description}}
+            </label>
+            <input class="btn btn-success" id="create-btn" type="submit" value="Actualizar">
         </form>
 
     {% endif %}

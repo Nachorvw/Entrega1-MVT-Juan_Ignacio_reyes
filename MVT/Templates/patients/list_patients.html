@@ -14,7 +14,9 @@ Listado de Pacientes
 <table class="table table-dark table-hover" cellspacing="5" cellpadding="5" border="3">
 
 <tr class="table-active">
+    {% if request.user.is_superuser %}
     <td><strong>orden</strong></td>
+    {% endif %}
     <td><strong>Nombre</strong></td>
     <td><strong>Apellido</strong></td>
     <td><strong>Edad</strong></td>
@@ -28,10 +30,13 @@ Listado de Pacientes
 {% for patient in patients %}
 
 <tr>
+    {% if request.user.is_superuser %}
     <td><a href="/create-order/{{patient.id}}/" class="btn btn-primary">Crear</a></td>
 
     <td><a href="/profile/{{patient.id}}/">{{patient.name}}</a></td>
-
+    {% else %}
+    <td>{{patient.name}}</td>
+    {% endif %}
     <td>{{patient.surname}}</td>
 
     <td>{{patient.age}}</td>
@@ -51,5 +56,4 @@ Listado de Pacientes
 </tr>
 {% endfor %}
 </table>
-
 {% endblock %}

@@ -1,13 +1,107 @@
 {% extends 'base.html' %}
-{% block title %}  
-INDEX
-{% endblock %}
-
+{% load static %}
+{% block title %}
+INDEX 
+{% endblock %} 
 {% block content %}
-    <div class="text-light">
-    <h1>Entrega intermedia</h1>
-    <h2>Juan Ignacio Reyes Vega Weiss</h2>
-    
-    
-    </div>
-{% endblock %}
+<div class="grid-layout">
+    <!-- ------------------------picture------what do we do----------------- -->
+    <section id="info">
+        <div id="info-picture">
+            {% if media.media_img %}
+                <img id="info-img" src="{{media.media_img.url}}" alt="">
+            {% else %}
+                <img id="info-img" src="{% static '/img/consultorio_img.jpg' %}" alt="">
+            {% endif %}
+        </div>
+        
+        <div id="info-text">
+            <ul id="info-text-ul">
+                <li id="info-text-li">Agenda con registro histórico de sus indicaciones médicas</li>
+                <li id="info-text-li">Recordatorios automáticos para adherencia a sus indicaciones:
+                <br>
+                – Estudios y Medicación (siguiente receta)
+                <br>
+                – Próxima visita indicada a su Consultorio</li>
+                <li id="info-text-li">Turnos / Citas Online y solicitud de Recetas médicas sin llamadas telefónicas</li>
+                <li id="info-text-li">Página web personal renovada para el profesional médico con agenda online</li>
+                <li id="info-text-li">Consultas online Paciente-Médico registradas como actos médicos en evoluciones</li>
+                <li id="info-text-li">Prescripción online de medicamentos y prácticas al paciente</li>
+        </div>
+    </section>
+    <!-- ----------------------FAQS --------------------------- -->
+    <section id="questions" class="p-5">
+        <div class="container">
+            <h2 class="text-center mb-4 text-light">Preguntas frecuentes</h2>
+            <div id="container-questions" class="accordion accordion-flush" id="questions">
+                <!--item 1-->
+                <div class="accordion-item text-dark">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#question-one">
+                            ¿Quienes somos?
+                        </button>
+                    </h2>
+                    <div id="question-one" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            soy un profesional médico apasionado y dedicado que ofrece un gran enfoque orientado al paciente y la importante capacidad de mantener la calma en situaciones de estrés. En Jackson Health Systems, Inc. pasé la mayor parte de mi tiempo de trabajo desarrollando planes de tratamiento personalizados y proporcionando servicios médicos de alta calidad a los pacientes, asegurando que sus necesidades fueran siempre satisfechas.
+                        </div>
+                    </div>
+                </div>
+                <!--item 2-->
+                <div class="accordion-item text-dark">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#question-two">
+                            ¿Cuáles son los medios de contacto?
+                        </button>
+                    </h2>
+                    <div id="question-two" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            Podés comunicarte con nosotros mediante nuestro numero de telefono, email o
+                            acercándote a alguna de nuestras sucursales
+                        </div>
+                    </div>
+                </div>
+                <!--item 3-->
+                <div class="accordion-item text-dark">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#question-three">
+                            ¿Tiene algún costo ser cliente de Consultorio?
+                        </button>
+                    </h2>
+                    <div id="question-three" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#questions">
+                        <div class="accordion-body">
+                            no tiene costo alguno, lo unico que usted tendra que pagar es su obra social prepaga
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- ----------sentence of the day----------- -->
+    <section id="day-sentence">
+        <div id="sentence" class="text-center mb-4 text-light">
+            <marquee id="day-sentence-text" direction="left">{{media.day_sentence}}</marquee>
+        </div>
+    </section>
+    <!-- --------------contact info--------------- -->
+    <section id="contact">
+        <div id="contact-info">
+            <ul id="contact-info-ul">
+                <li id="contact-info-li">Contactenos!</li>
+                <li id="contact-info-li">Numero de Telefono: 1132441323</li>
+                <li id="contact-info-li">Email: Consultorio@gmail.com</li>
+                <li id="contact-info-li">direccion: Coderhouse, San Martín, Buenos Aires</li>
+            </ul>
+        </div>
+        <div id="google-maps">
+            <iframe id="google-maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d821.0234625928405!2d-58.37429330134111!3d-34.60178825638965!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccaccf4a5be6f%3A0x97ebb6aac5198f6c!2sCoderhouse!5e0!3m2!1ses!2sar!4v1675662256888!5m2!1ses!2sar" width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+</div>
+    {% endblock %}

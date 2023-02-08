@@ -8,16 +8,15 @@ Actualizar usuario
 <h1>Complete el formulario para actualizar usuario: {{user.username}} </h1>
 
 
-{%  if form  %}
+{%  if form_profile  %}
 
 <form action="" method="POST" enctype="multipart/form-data" >
 
     {% csrf_token %}
 
     <table>
-        {{form.as_table}}
+        {{form_profile.as_table}}
     </table>
-
 
     <input type="submit" value="Actualizar">
 </form>

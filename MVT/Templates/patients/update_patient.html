@@ -1,22 +1,45 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Actualizacion de Pacientes
 {% endblock %}
 
 {% block content %}
-    <h1>Actualizacion de Paciente</h1>
-
+    <link rel="stylesheet" href="{% static '/css/styleCreation.css' %}">
 
 
     {% if form %}
 
-        <form class="text-light" method="POST" >
+        <form class="create" method="POST" >
+            <h1>Actualizacion de Paciente</h1>
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <input type="submit" value="Actualizar">
+            
+            <label for="first_name"> 
+                Nombre:
+                {{form.name}}
+            </label>
+            <label for="last_name">
+                Apellido: 
+                {{form.surname}}
+            </label>
+            <label for="age">
+                Edad: 
+                {{form.age}}
+            </label>
+            <label for="Dni">
+                DNI:
+                {{form.dni}}
+            </label>
+            <label for="birth_date">
+                Fecha de nacimiento:
+                {{form.birth_date}}
+            </label>
+            <label for="affiliate_code">
+                Numero de afiliado:
+                {{form.affiliate_code}}
+            </label>
+
+            <input class="btn btn-success" id="create-btn" type="submit" value="Actualizar">
         </form>
 
     {% endif %}

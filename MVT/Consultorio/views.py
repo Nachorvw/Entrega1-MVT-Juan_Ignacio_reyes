@@ -8,19 +8,19 @@ from MVT.decorators import allowed_users
 # Create your views here.
 @allowed_users(allowed_roles=["Admin"])
 def patient_creation(request):
-    #? funcion para poder crear pacientes ingresando la data por forms dentro del html
+    #? function to create patients from the html
 
-    if request.method == "GET": #? si recivimos un get, mostramos el formulario en create_patient.html
+    if request.method == "GET": #?if we receive a get, we show the form
         context = {
             "form" : PatientsForm(),
         }
         return render (request, "patients/create_patient.html", context=context)
 
 
-    elif request.method == "POST": #? si recivimos un post, creamos en este caso el paciente,con los datos que recivimos al completar el formularo en el get
+    elif request.method == "POST": #?if we receive a post, we atempt to create the patient with the data from the form
         form = PatientsForm(request.POST)
 
-        if form.is_valid(): #? si los datos son validos, se crea el paciente
+        if form.is_valid(): #?if the data is valid, we create the patient
             Patient.objects.create(
                 name = form.cleaned_data["name"],
                 surname = form.cleaned_data["surname"],
@@ -31,9 +31,9 @@ def patient_creation(request):
             )
             return render(request, "patients/create_patient.html", context={})
         
-        else: #? si los datos no son validos, se muestran los errores y devuelve el form para completarlo correctamente
+        else: #?if the data is not valid, we show the errors and return the form again
             context = {
-                "form_errors" : form.errors, #? para poder mostrar los errores en el html
+                "form_errors" : form.errors,
                 "form": PatientsForm(),
             }
             return render(request, "patients/create_patient.html", context=context)
@@ -41,14 +41,14 @@ def patient_creation(request):
 @login_required
 def patient_list(request):
 
-    #? funcion para listar la data de los pacientes en el html
+    #? function for listing the patients in the html
 
-    #? si el get nos trae un search (la barra de busqueda), filtramos los datos para mostrar los que contengan ese nombre
+    #? if we receive a "search" from GET, we filter the data
     if "search" in request.GET:
         search = request.GET["search"]
         list_patient = Patient.objects.filter(name__icontains = search)
 
-    #? si no trae un search, mandamos toda la data normalmente
+    #? if not, we send all the data
     else: 
         list_patient = Patient.objects.all()
     context = {
@@ -58,7 +58,7 @@ def patient_list(request):
 
 @allowed_users(allowed_roles=["Admin"])
 def patientdetail(request,pk):
-    #? funcion para ver con detalle el paciente
+    #? function for patient profile
     patient_all = Patient.objects.get(id = pk)
     patient_orders = patient_all.orders_set.all()
     context = {
@@ -68,16 +68,16 @@ def patientdetail(request,pk):
     return render(request, 'patients/patient_profile.html', context=context)
 
 class PatientUpdate(PermissionRequiredMixin,UpdateView):
-    #? funcion para actualizar los datos de un objeto en la base de datos (paciente)
-    permission_required = "patient.change_patient" #? buscamos el permiso para actualizar pacientes dentro del usuario, si lo tiene, lo dejamos entrar en la view, si no lo tiene, eleva un error
+    #? function to update the data in the db (patient)
+    permission_required = "patient.change_patient" #?we search for the permission in the user, if he has one, we let him enter the view, if not we send an error
     model = Patient
     fields = ["name", "surname", "age", "dni", "birth_date", "affiliate_code"]
     template_name= "patients/update_patient.html"
     success_url ="/list-patients/"
 
 class PatientDelete(PermissionRequiredMixin,DeleteView):
-    #? funcion para borrar un objeto de la base de datos (paciente)
-    permission_required = "patient.delete_patient" #? buscamos el permiso para borrar pacientes dentro del usuario, si lo tiene, lo dejamos entrar en la view, si no lo tiene, eleva un error
+    #? function to delete an object from the db (patient)
+    permission_required = "patient.delete_patient" #? we search for the permission in the user, if he has one, we let him enter the view, if not we send an error
     model = Patient
     template_name = 'patients/delete_patient.html'
     success_url = '/list-patients/'
@@ -152,7 +152,6 @@ def medicine_creation(request):
     
     elif request.method == "POST":
         form = MedicinesForm(request.POST)
-
         if form.is_valid():
             Medicines.objects.create(
                 name = form.cleaned_data["name"],

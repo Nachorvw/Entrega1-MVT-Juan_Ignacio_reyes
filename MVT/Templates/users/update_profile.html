@@ -13,8 +13,12 @@ Actualizar perfil
 			<hr>
 			<h3 id="conf-profile-h3">Configuracion de perfil</h3>
 			<hr>
+			{% if request.user.profile.profile_img.url != "" %}
 			<img class="profile-img" src="{{request.user.profile.profile_img.url}}" >
-            <a id="btn-back-profile" class="btn btn-warning" href="/user-profile/"> &#8592; volver al perfil</a>
+			{% else %}
+			<img class="profile-img" src="/static/img/default_profile_img.png" >
+			{% endif %}
+            <a id="btn-back-profile" class="btn btn-primary" href="/user-profile/"> ← volver al perfil</a>
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -23,21 +27,21 @@ Actualizar perfil
 				{% csrf_token %}
 				<div class="form-group">
                     <label class="form-label" for="age">Edad</label>
-                    <input class="form-control" type="number" id="age" name="age">
+                    <input class="form-control" type="number" id="age" name="age" value="{{user.profile.age}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="dni">DNI</label>
-                    <input class="form-control" type="number" id="dni" name="dni">
+                    <input class="form-control" type="number" id="dni" name="dni" value="{{request.user.profile.dni}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="phone">Numero de telefono</label>
-                    <input class="form-control" type="number" id="phone" name="phone">
+                    <input class="form-control" type="number" id="phone" name="phone" value="{{request.user.profile.phone}}">
                 </div>
-                <div class="form-group">
-                    <label class="form-label" for="profile_img">Imagen de perfil</label>
-                    <input class="form-control" type="file" id="profile_img" name="profile_img">
-                </div>
-			<input id="update-information" class="btn btn-primary" type="submit" name="Update Information">
+					<div class="form-group">
+						<label class="form-label" for="profile_img">Imagen de perfil</label>
+						<input class="form-control" type="file" id="profile_img" name="profile_img">
+					</div>
+					<input id="update-information" class="btn btn-primary" type="submit" name="Update Information">
 			</form>
 		</div>
 	</div>
@@ -50,8 +54,12 @@ Actualizar perfil
 			<hr>
 			<h3 id="conf-profile-h3">Configuracion de usuario</h3>
 			<hr>
+			{% if request.user.profile.profile_img.url != "" %}
 			<img class="profile-img" src="{{request.user.profile.profile_img.url}}" >
-            <a id="btn-back-profile" class="btn btn-warning" href="/user-profile/"> &#8592; volver al perfil</a>
+			{% else %}
+			<img class="profile-img" src="/static/img/default_profile_img.png" >
+			{% endif %}
+            <a id="btn-back-profile" class="btn btn-primary" href="/user-profile/"> ← volver al perfil</a>
 		</div>
 	</div>
 	<div class="col-md-9">
@@ -60,15 +68,15 @@ Actualizar perfil
 				{% csrf_token %}
 				<div class="form-group">
                     <label class="form-label" for="username">Usuario</label>
-                    <input class="form-control" type="text" id="username" name="username">
+                    <input class="form-control" type="text" id="username" name="username" value="{{request.user.username}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="first_name">Nombre</label>
-                    <input class="form-control" type="text" id="first_name" name="first_name">
+                    <input class="form-control" type="text" id="first_name" name="first_name" value="{{request.user.first_name}}">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="last_name">Apellido</label>
-                    <input class="form-control" type="text" id="last_name" name="last_name">
+                    <input class="form-control" type="text" id="last_name" name="last_name" value="{{request.user.last_name}}">
                 </div>
 			<input id="update-information" class="btn btn-primary" type="submit" name="Update Information">
 			</form>

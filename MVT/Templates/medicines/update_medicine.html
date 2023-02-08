@@ -1,22 +1,38 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Actualizacion de Recetas
 {% endblock %}
 
 {% block content %}
-    <h1>Actualizacion de Recetas</h1>
-
-
-
+    <link rel="stylesheet" href="{% static '/css/styleCreation.css' %}">
     {% if form %}
 
-        <form class="text-light" method="POST">
+        <form class="create" method="POST">
+            <h1>Actualizacion de Recetas</h1>
             {% csrf_token %}
-            <table>
-                {{form.as_table}}
-            </table>
-            <input type="submit" value="Actualizar">
+            <label for="name">
+                Nombre del Remedio: 
+                {{form.name}}
+            </label>
+            <label for="dose">
+                Dosis indicada en miligramos: 
+                {{form.dose}}
+            </label>
+            <label for="indication_date">
+                Fecha de indicacion: 
+                {{form.indication_date}}
+            </label>
+            <label for="diagnostic">
+                Diagnostico del Paciente: 
+                {{form.diagnostic}}
+            </label>
+            <label for="number">
+                Codigo de la receta: 
+                {{form.number}}
+            </label>
+            
+            <input class="btn btn-success" id="create-btn" type="submit" value="Actualizar">
         </form>
 
     {% endif %}

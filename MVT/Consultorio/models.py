@@ -32,12 +32,10 @@ class Orders(models.Model):
     indication_date = models.DateField(blank=False)
     done = models.BooleanField(default=False)
     description = models.CharField(max_length=200)
-
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
     class Meta:
         verbose_name = 'Orden'
         verbose_name_plural = 'Ordenes'
-    
-    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.order_type
@@ -48,12 +46,21 @@ class Medicines(models.Model):
     indication_date = models.DateField(blank=False)
     diagnostic = models.CharField(max_length=100, blank=False)
     number = models.IntegerField(blank=False)
-    
+    patient = models.ForeignKey(Patient, null=True, on_delete=models.SET_NULL)
     def __str__(self):
         return self.name
 
     class Meta:
         verbose_name = 'Receta'
         verbose_name_plural = 'Recetas'
-        
 
+class Media(models.Model):
+    media_img =  models.ImageField(upload_to="home_images", null = True, blank=True)
+    day_sentence = models.CharField(null=True, blank=True, max_length=250)
+
+    def __str__(self):
+        return ("cambie su imagen desde aqui")
+
+    class Meta:
+        verbose_name = 'Media'
+        verbose_name_plural = 'Media'

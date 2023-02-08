@@ -1,30 +1,73 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}  
 Listado de Pacientes
 {% endblock %}
 {% block content %}
 
-
-<div class="card" style="width: 18rem;">
-    {% if request.user.profile.profile_img.url != "" %}
-    <img src="{{request.user.profile.profile_img.url}}" class="card-img-top" alt="...">
-    {% endif %}
-    <div class="card-body">
-        <h5 class="card-title">{{user.username}} </h5>
-        <p class="card-text">numero de afiliado: {{user.profile.affiliate_code}}</p>
-    </div>
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{patient.surname}}</li>
-        <li class="list-group-item">edad: {{user.profile.age}}</li>
-        <li class="list-group-item">dni: {{user.profile.dni}}</li>
-        <li class="list-group-item">telefono: {{user.profile.phone}}</li>
-    </ul>
-    <div class="card-body">
-        <a href="#" class="card-link">{{user.profile.birth_date}}</a>
-        <a href="/update-profile/" class="card-btn">actualizar</a>
-    </div>
+<br>
+<!-- -------profile info---------- -->
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<hr>
+			<h3 id="conf-profile-h3">{{user.username}}</h3>
+			<hr>
+            {% if request.user.profile.profile_img.url != "" %}
+			<img class="profile-img" src="{{request.user.profile.profile_img.url}}" >
+			{% else %}
+			<img class="profile-img" src="{% static '/img/default_profile_img.png' %}" >
+			{% endif %}
+			
+            <a id="btn-back-profile" class="btn btn-primary" href="/"> ← volver al inicio</a>
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div id="profile-data" class="card card-body">
+            <div class="col1">
+                    <div class="name">
+                        <h4>Nombre:</h4>
+                        <h5 id="profile-info">{{user.first_name}}</h5>
+                    </div>
+                    <div class="surname">
+                        <h4>Apellido:</h4>
+                        <h5 id="profile-info">{{user.last_name}}</h5>
+                    </div>
+                    <div class="age">
+                        <h4>Edad:</h4>
+                        <h5 id="profile-info">{{user.profile.age}}</h5>
+                    </div>
+                    <div class="DNI">
+                        <h4>DNI:</h4>
+                        <h5 id="profile-info">{{user.profile.dni}}</h5>
+                    </div>
+                </div>
+                <div class="col2">
+                    <div class="email">
+                        <h4>Email:</h4>
+                        <h5 id="profile-info">{{user.email}}</h5>
+                    </div>
+                    <div class="phone">
+                        <h4>Telefono:</h4>
+                        <h5 id="profile-info">{{user.profile.phone}}</h5>
+                    </div>
+                    <div class="afiliate-code">
+                        <h4>Numero de afiliado:</h4>
+                        <h5 id="profile-info">{{user.profile.affiliate_code}}</h5>
+                    </div>
+                    <div class="birth-date">
+                        <h4>Fecha de nacimiento:</h4>
+                        <h5 id="profile-info">{{user.patient.birth_date}}</h5>
+                    </div>
+                </div>
+                    <a id="btn-update-user" class="btn btn-primary" href="/update-user/">Actualizar usuario →</a>
+                    <a id="btn-update-profile" class="btn btn-primary" href="/update-profile/">Actualizar perfil →</a>
+		</div>
+	</div>
 </div>
-
+<br>
+<!-- -------user orders completed---------- -->
+{% if orders %}
 <h1 class="text-light">Ordenes:</h1>
 <div class="containerOrder">
     
@@ -67,6 +110,7 @@ Listado de Pacientes
             </div>
         </div>
     </div>
+<!-- -------user orders incomplete---------- -->
         {% else %}
         <div class="containerCard">
         <div class="card-border2">
@@ -105,6 +149,6 @@ Listado de Pacientes
         </div>
         {% endif %}
     {% endfor %}
-
-</div> 
+{% endif %}
+</div>
 {% endblock %}

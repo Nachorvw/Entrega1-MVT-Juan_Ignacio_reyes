@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Consultorio.views import patient_creation, patient_list, order_creation, order_list, medicine_creation, medicine_list, MedicineUptade, PatientUpdate, OrderUpdate, MedicineDelete, PatientDelete, OrderDelete, patientdetail
-from MVT.views import index
+from MVT.views import index, about_us
 from users.views import user_login, user_register, update_user, update_user_profile, user_profile_page
 from django.contrib.auth.views import LogoutView
 from MVT.settings import MEDIA_ROOT, MEDIA_URL
@@ -24,19 +24,24 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("", index, name="index"),
     path('admin/', admin.site.urls),
+    path("about-us/", about_us),
+    #---patients---
     path("create-patient/", patient_creation),
     path("list-patients/", patient_list),
     path("update-patient/<int:pk>/", PatientUpdate.as_view()),
     path("delete-patient/<int:pk>/", PatientDelete.as_view()),
+    path('profile/<int:pk>/', patientdetail),
+    #---orders---
     path("create-order/<int:pk>/", order_creation),
     path("list-orders/", order_list),
     path("update-order/<int:pk>/", OrderUpdate.as_view()),
     path("delete-order/<int:pk>/", OrderDelete.as_view()),
+    #---medicines---
     path("create-medicine/", medicine_creation),
     path("list-medicines/", medicine_list),
     path("update-medicine/<int:pk>/", MedicineUptade.as_view()),
     path("delete-medicine/<int:pk>/", MedicineDelete.as_view()),
-    path('profile/<int:pk>/', patientdetail),
+    #---user---
     path("login/", user_login, name="login"),
     path("logout/", LogoutView.as_view(template_name = "users/logout.html")),
     path("register/", user_register),
