@@ -13,7 +13,7 @@
 </head>
 {% block header %}
 <header id="navbar">
-    <nav id="navbar-container" class="navbar navbar-expand-lg navbar-dark flex">
+    <nav id="navbar-items" class="navbar navbar-expand-lg navbar-dark">
         <a  class="navbar-brand" href="/">
             <img id="nav-logo" src="{% static '/img/web_logo.png' %}"
                 width="30" height="30" class="d-inline-block align-top" alt="Logo Coder" />
@@ -26,22 +26,32 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav text-center">
                 <a class="nav-item nav-link" href="/">Inicio</a>
-                <a class="nav-item nav-link" href="/about-us/">about us</a>
+                <a class="nav-item nav-link" href="{% url 'about-us' %}">about us</a>
                 {% if request.user.is_superuser %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Crear
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'patient-create' %}">Crear Paciente</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'medicine-create' %}">Crear Medicacion</a>
+                    </div>
+                    
+                </li>
                 <a class="nav-item nav-link" href="/admin/">ADMIN</a>
-                <a class="nav-item nav-link" href="/create-patient/">Crear Paciente</a>
-                <a class="nav-item nav-link" href="/create-medicine/">Crear Medicacion</a>
                 {% endif %}
-                <a class="nav-item nav-link" href="/list-patients/">Listar Pacientes</a>
+                <a class="nav-item nav-link" href="{% url 'patient-list' %}">Listar Pacientes</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Listado
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/list-orders/">Listar Ordenes</a>
+                        <a class="dropdown-item" href="{% url 'order-list' %}">Listar Ordenes</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/list-medicines/">Listar Medicamentos</a>
+                        <a class="dropdown-item" href="{% url 'medicine-list' %}">Listar Medicamentos</a>
                     </div>
                     
                 </li>
@@ -50,9 +60,9 @@
                     <a class="nav-link" href="/logout/">LogOut</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user-profile/">perfil</a>
+                    <a class="nav-link" href="{% url 'user-profile' %}">perfil</a>
                 </li>
-                <li class="nav-item">
+                <li id="nav-profile" class="nav-item">
                     <a class="nav-link">
                         {{user.username}} {% if request.user.profile.profile_img.url != ""%}
                         <img id="navbar-profile-img" src="{{request.user.profile.profile_img.url}}"/>
@@ -63,18 +73,15 @@
                 </li>
                 {% else %}
                 <li class="nav-item border-success">
-                    <a class="nav-link" href="/login/">LogIn</a>
+                    <a class="nav-link" href="{% url 'login' %}">LogIn</a>
                 </li>
                 <li class="nav-item border-info">
-                    <a class="nav-link" href="/register/">Register</a>
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
                 {% endif %} {% block navbar %}
-                <form class="form-inline my-2 my-lg-0 d-flex" action="" id= "search-bar"method="GET">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search"
-                        name="search" />
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Buscar
-                    </button>
+                <form id="search-bar" class="d-flex" action="" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 {% endblock %}
             </div>

@@ -1,16 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}  
-Listado de Pacientes
-{% endblock %}
-{% block navbar %}
-<form class="form-inline my-2 my-lg-0" action="/list-patients/" method="GET">
-    <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" name="search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-</form>
+Perfil de Paciente
 {% endblock %}
 {% block content %}
-
-
 <br>
 <div class="row">
 	<div class="col-md-3">

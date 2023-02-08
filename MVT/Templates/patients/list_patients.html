@@ -31,9 +31,9 @@ Listado de Pacientes
 
 <tr>
     {% if request.user.is_superuser %}
-    <td><a href="/create-order/{{patient.id}}/" class="btn btn-primary">Crear</a></td>
+    <td><a href="{% url 'order-create' patient.id %}" class="btn btn-primary">Crear</a></td>
 
-    <td><a href="/profile/{{patient.id}}/">{{patient.name}}</a></td>
+    <td><a href="{% url 'patient-profile' patient.id %}">{{patient.name}}</a></td>
     {% else %}
     <td>{{patient.name}}</td>
     {% endif %}
@@ -49,8 +49,8 @@ Listado de Pacientes
 
     {% if request.user.is_superuser %}
     <td>
-        <a href="/update-patient/{{patient.id}}/" class="btn btn-primary">Actualizar</a>
-        <a href="/delete-patient/{{patient.id}}/" class="btn btn-danger">Eliminar</a>
+        <a href="{% url 'patient-update' patient.id %}" class="btn btn-primary">Actualizar</a>
+        <a href="{% url 'patient-delete' patient.id %}" class="btn btn-danger">Eliminar</a>
     </td>
     {% endif %}
 </tr>

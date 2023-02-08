@@ -48,8 +48,8 @@ Listado de Ordenes
                         <div class="card-footer">
                             <p class="card-text-foot"><small class="text-muted">fecha de indicacion: {{order.indication_date}}</small></p>
                             {% if request.user.is_superuser %}
-                                <a href="/update-order/{{order.id}}/" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
-                                <a href="/delete-order/{{order.id}}/" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
+                                <a href="{% url 'order-update' order.id %}" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
+                                <a href="{% url 'order-delete' order.id %}" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
                             {% endif %}
                         </div>
                 </div>         
@@ -89,8 +89,8 @@ Listado de Ordenes
                         <div class="card-footer">
                             <p class="card-text-foot"><small class="text-muted">fecha de indicacion: {{order.indication_date}}</small></p>
                                 {% if request.user.is_superuser %}
-                                    <a href="/update-order/{{order.id}}/" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
-                                    <a href="/delete-order/{{order.id}}/" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
+                                    <a href="{% url 'order-update' order.id %}" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
+                                    <a href="{% url 'order-delete' order.id %}" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
                                 {% endif %}
                             </div>
                     </div>         

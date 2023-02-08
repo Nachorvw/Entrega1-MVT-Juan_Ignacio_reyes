@@ -32,8 +32,8 @@ Listado de Ordenes
                     {% if request.user.is_superuser %}
                         <div class="card-footer">
                             <p class="card-text"><small class="text-muted">fecha de indicacion: {{medicine.indication_date}}</small></p>
-                            <a href="/update-medicine/{{medicine.id}}/" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
-                            <a href="/delete-medicine/{{medicine.id}}/" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
+                            <a href="{% url 'medicine-update' medicine.id %}" id="btn1" class="btn btn-primary mr-5">Actualizar</a>
+                            <a href="{% url 'medicine-delete' medicine.id %}" id="btn2" class="btn btn-danger ml-5">Eliminar</a>
                         </div>
                     {% endif %}
                 </div>         

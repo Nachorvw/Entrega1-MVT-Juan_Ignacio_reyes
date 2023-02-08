@@ -60,8 +60,8 @@ Listado de Pacientes
                         <h5 id="profile-info">{{user.patient.birth_date}}</h5>
                     </div>
                 </div>
-                    <a id="btn-update-user" class="btn btn-primary" href="/update-user/">Actualizar usuario →</a>
-                    <a id="btn-update-profile" class="btn btn-primary" href="/update-profile/">Actualizar perfil →</a>
+                    <a id="btn-update-user" class="btn btn-primary" href="{% url 'user-update' %}">Actualizar usuario →</a>
+                    <a id="btn-update-profile" class="btn btn-primary" href="{% url 'profile-update' %}">Actualizar perfil →</a>
 		</div>
 	</div>
 </div>
