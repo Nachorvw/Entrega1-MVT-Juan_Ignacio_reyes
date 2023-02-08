@@ -141,6 +141,7 @@
     grid-column: 1;
     height: 400px;
     width: 600px;
+    margin-right: 1rem;
 }
 #info-img{
     object-fit: cover;
