@@ -25,7 +25,7 @@
 ### Cómo ejecutar el proyecto
 - Instalar Python
 - Clonar el proyecto con ``` git clone git@github.com:Nachorvw/MVT-Juan_Ignacio.git```
-- Crear entorno virtual con `Pipenv` or `virtualenv` and activate it.
+- Crear entorno virtual con `Pipenv` or `virtualenv` y activarlo.
 - Instalar los requerimientos
 ```sh
     -Django==4.1.6(
